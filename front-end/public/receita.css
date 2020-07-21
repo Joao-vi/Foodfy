@@ -1,0 +1,59 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;700&display=swap');
+.receita-banner img {
+    width: 100%;
+    height: 366px;
+    border-radius: 20px;
+    margin-top: 26px;
+}
+
+.title-info {
+    margin-top: 50px;
+    text-align: center;
+}
+
+.title-info h1 {
+    font-family: Roboto-Bold;
+    font-size: 36px;
+    color: #111111;
+}
+
+.title-info p {
+    font-family: Roboto-Regular;
+    font-size: 20px;
+    color: #777777;
+}
+
+#tohide_1,
+#tohide_2,
+#tohide_3 {
+    visibility: visible;
+    margin-bottom: 50px;
+}
+
+#tohide_1.hidden,
+#tohide_2.hidden,
+#tohide_3.hidden {
+    visibility: hidden;
+    margin-bottom: 0px;
+    height: 0;
+}
+
+.title {
+    align-items: center;
+    display: flex;
+}
+
+.title h3 {
+    font-family: Roboto-Bold;
+    font-size: 24px;
+    color: #111111;
+}
+
+.title p {
+    margin-left: 8px;
+    font-family: Roboto-Regular;
+    font-size: 18px;
+    color: #444444;
+    line-height: 28px;
+    cursor: pointer;
+}
