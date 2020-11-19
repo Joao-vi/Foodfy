@@ -5,7 +5,7 @@ const info = [document.querySelector('#tohide_1'), document.querySelector('#tohi
 for (let card of cards) {
     card.addEventListener('click', () => {
         const Id = card.getAttribute('id')
-        window.location.href = `/receita/${Id}`
+        window.location.href = `/recipe/${Id}`
     })
 }
 

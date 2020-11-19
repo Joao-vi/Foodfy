@@ -1,4 +1,4 @@
-{% extends "layout.njk" %} 
+{% extends "area-general/layout.njk" %} 
 {% block head %}
     <link rel="stylesheet" href="/index.css">
     <link rel="stylesheet" href="/section.css">
@@ -15,14 +15,14 @@
             <h1>Mais acessadas</h1>
         </div>
         <section class="more-acessed-cards">
-            {% for receita in receitas %}
+            {% for recipe in recipes %}
                 <div class="revenue-card">
                     <div class="img-card">
-                        <img src="{{receita.image}}" alt="imagem de {{receita.image}}">
+                        <img src="{{recipe.image}}" alt="imagem de {{recipe.image}}">
                     </div>
                     <div class="info-card">
-                        <h1>{{receita.title}}</h1>
-                        <p>{{receita.author}}</p>
+                        <h1>{{recipe.title}}</h1>
+                        <p>{{recipe.author}}</p>
                     </div>
 
                 </div>

@@ -1,13 +1,13 @@
-{% extends "layout.njk" %} 
+{% extends "area-general/layout.njk" %} 
 {% block head %}
-<link rel="stylesheet" href="/receita.css">
+<link rel="stylesheet" href="/recipe.css">
 {% endblock %}
 {% block content %}
-    <div class="receita-banner">
-        <img src="{{receita.image}}" alt="imagem de {{receita.image}}">
+    <div class="recipe-banner">
+        <img src="{{recipe.image}}" alt="imagem de {{recipe.image}}">
     <div class="title-info">
-        <h1>{{receita.title}}</h1>
-        <p>{{receita.author}}</p>
+        <h1>{{recipe.title}}</h1>
+        <p>{{recipe.author}}</p>
     </div>
     </div>
     <div  class="ingredientes">
@@ -16,7 +16,7 @@
             <p class="hide_1">Esconder</p>
         </div>
          <ul id="tohide_1">
-            {% for ingredient in receita.ingredients %}
+            {% for ingredient in recipe.ingredients %}
             <li>{{ingredient}}</li>
             {% endfor %}
         </ul>
@@ -27,7 +27,7 @@
             <p class="hide_2">Esconder</p>
         </div>
         <ul id="tohide_2">
-            {% for preparation in receita.preparation %}
+            {% for preparation in recipe.preparation %}
             <li>{{preparation}}</li>
             {% endfor %}
         </ul>
@@ -38,6 +38,6 @@
             <h3>Informações adicionais</h3>
             <p class="hide_3">Esconder</p>
         </div>
-        <p id="tohide_3">{{receita.information}}</p>
+        <p id="tohide_3">{{recipe.information}}</p>
     </div>
 {% endblock %}

@@ -1,14 +1,15 @@
 const express = require('express')
 const nunjucks = require('nunjucks')
-
 const server = express()
 
-const receitas = require('./data')
+const route = require('./routes')
+const port = portNormalize(process.env.PORT || "5000")
 
-const port = process.env.PORT || 3000
-
+const methodOverride = require('method-override')
+server.use(express.urlencoded({ extended: true }))
 server.use(express.static('./front-end/public'))
-
+server.use(methodOverride("_method"))
+server.use(route)
 server.set('view engine', 'njk')
 
 nunjucks.configure('./front-end/views', {
@@ -16,29 +17,18 @@ nunjucks.configure('./front-end/views', {
     autoescape: false,
     noCache: true
 })
-server.get('/', (req, res) => {
-    return res.render('index', { receitas })
-
-})
-server.get('/sobre', (req, res) => {
-    return res.render('sobre')
-
-})
-server.get('/receitas', (req, res) => {
-    return res.render('receitas', { receitas })
-})
-
-server.get('/receita/:id', (req, res) => {
-    const id = req.params.id
-
-
-    if (id >= receitas.length)
-        return res.send('Receita not Found')
-    return res.render('receita', { receita: receitas[id] })
-
-
-})
-
 server.listen(port, () => {
     console.log('server is running in port ' + port)
 })
+
+function portNormalize(val) {
+    const port = parseInt(val, 10);
+
+    if (isNaN(port)) {
+        return val;
+    }
+    if (port >= 0) {
+        return port;
+    }
+    return false;
+}
