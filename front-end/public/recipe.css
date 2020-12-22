@@ -57,3 +57,25 @@
     line-height: 28px;
     cursor: pointer;
 }
+
+.detail-admin {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.detail-admin button {
+    background: #6558C3 100%;
+    padding: 6px 15px;
+    border-color: transparent;
+    border-radius: 4px;
+    font-family: Roboto-Bold;
+    font-size: 16px;
+    color: #FFFFFF;
+    cursor: pointer;
+}
+
+.detail-admin button:first-child {
+    background: #DC4747 100%;
+    margin-right: 10px;
+}

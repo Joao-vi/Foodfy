@@ -5,22 +5,19 @@
 {% block content %}
     <div class="detail-admin"> 
         <div id="title-acessed">
-            <h1>Receita: {{recipe.title}}</h1>
+            <h1>Editando receita</h1>
         </div>
-        <button  onclick="window.location.href='/admin/recipes/{{recipe.id}}/edit'" >Editar receita</button>
-    </div>
-    <div class="recipe-banner">
-        <img src="{{recipe.image}}" alt="imagem de {{recipe.image}}">
-        <div class="title-info">
-            <h1>{{recipe.title}}</h1>
-            <p>{{recipe.author}}</p>
+        <div>
+            <button>Deletar</button>
+            <button>Salvar receita</button>
         </div>
     </div>
+
     <div  class="ingredientes">
         <div class="title">
             <h3>Ingredientes</h3>
         </div>
-         <ul id="tohide_1">
+        <ul id="tohide_1">
             {% for ingredient in recipe.ingredients %}
             <li>{{ingredient}}</li>
             {% endfor %}
@@ -35,12 +32,11 @@
             <li>{{preparation}}</li>
             {% endfor %}
         </ul>
-
     </div>
     <div  class="informacoes">
-         <div class="title">
-            <h3>Informações adicionais</h3>
-        </div>
-        <p id="tohide_3">{{recipe.information}}</p>
+            <div class="title">
+                <h3>Informações adicionais</h3>
+            </div>
+            <p id="tohide_3">{{recipe.information}}</p>
     </div>
 {% endblock %}
