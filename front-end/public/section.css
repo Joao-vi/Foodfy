@@ -37,3 +37,45 @@
     font-size: 14px;
     color: #777777;
 }
+
+
+/*---------- área adm ----------*/
+
+.admin {
+    margin-top: 30px;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.admin .revenue-card {
+    display: flex;
+}
+
+.admin .img-card img {
+    width: 172px;
+    height: 80px;
+    margin-top: 0px;
+    border-radius: 10px;
+}
+
+.admin .info-card {
+    margin-top: 0px;
+    margin-left: 20px;
+}
+
+.admin .info-card h1 {
+    line-height: 21px;
+    margin: 0px;
+}
+
+.admin .info-card p {
+    margin: 5px 0px 10px 0px;
+    line-height: 16px;
+}
+
+.admin .info-card a {
+    font-family: Roboto-Bold;
+    font-size: 14px;
+    color: #6558C3;
+    line-height: 16px;
+}
