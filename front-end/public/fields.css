@@ -26,11 +26,12 @@
     margin: 0px;
 }
 
+.item div:nth-child(2) textarea,
 .item div:nth-child(2) input {
     width: 100%;
     height: 50px;
     margin: 10px 0px 15px 0px;
-    padding-left: 20px;
+    padding: 0px 20px;
     background: #FFFFFF;
     border: 1px solid #DDDDDD;
     border-radius: 4px;
@@ -46,4 +47,9 @@
     font-size: 16px;
     color: #6558C3;
     text-align: right;
+}
+
+.item div:nth-child(2) textarea {
+    height: 260px;
+    padding-top: 10px;
 }

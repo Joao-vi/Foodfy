@@ -6,8 +6,33 @@
         <input 
             required 
             type="url" 
-            name="recipe_url" 
-            placeholder="http://" >
+            name="image" 
+            placeholder="http://" 
+            value="{{recipe.image}}">
+    </div>
+</div>
+<div  class="item">
+    <div>
+        <h3>Nome da receita</h3>
+    </div>
+    <div>
+        <input 
+            required 
+            type="text" 
+            name="title" 
+            value="{{recipe.title}}">
+    </div>
+</div>
+<div  class="item">
+    <div>
+        <h3>Autor da receita</h3>
+    </div>
+    <div>
+        <input 
+            required 
+            type="text" 
+            name="author" 
+            value="{{recipe.author}}">
     </div>
 </div>
 <div  class="item">
@@ -15,13 +40,20 @@
         <h3>Ingredientes</h3>
     </div>
     <div>
-        {% for ingredient in recipe.ingredients %}
+        {%if recipe.ingredients%}
+            {% for ingredient in recipe.ingredients %}
+                <input 
+                required 
+                type="text" 
+                name="ingredient[]"
+                value="{{ingredient}}">
+            {% endfor %}
+        {% else %}
             <input 
-            required 
-            type="text" 
-            name="ingredient"
-            value="{{ingredient}}">
-        {% endfor %}
+                required 
+                type="text" 
+                name="ingredient[]">
+        {% endif %}
     </div>    
     <a href="">Adicionar novo ingrediente</a>
 </div>
@@ -30,13 +62,20 @@
         <h3>Modo de preparo</h3>
     </div>
     <div>
-        {% for preparation in recipe.preparation %}
+        {% if recipe.preparation%}
+            {% for preparation in recipe.preparation %}
+                <input 
+                    required 
+                    type="text" 
+                    name="preparation_mode[]"
+                    value="{{preparation}}">
+            {% endfor %}
+        {% else %}
             <input 
                 required 
                 type="text" 
-                name="preparation_mode"
-                value="{{preparation}}">
-        {% endfor %}
+                name="preparation_mode[]">
+        {% endif %}
     </div>     
     <a href="">Adicionar passo</a>
 </div>
@@ -45,10 +84,11 @@
         <h3>Informações adicionais</h3>
     </div>
     <div>
-        <input 
+        <textarea 
             required 
             type="text" 
-            name="add_information"
-            value="{{recipe.information}}">
+            name="add_information">
+            {{recipe.information}}
+            </textarea>
     </div>     
 </div>
