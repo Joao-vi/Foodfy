@@ -79,3 +79,7 @@
     background: #DC4747 100%;
     margin-right: 10px;
 }
+
+.detail-admin .create button {
+    background: #6558C3 100%;
+}

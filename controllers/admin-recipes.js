@@ -6,7 +6,7 @@ exports.index = function(req, res) {
     return res.render('area-adm/index', { recipes: data.recipes })
 }
 exports.create = function(req, res) {
-    return res.render('area-adm/about')
+    return res.render('area-adm/create')
 }
 
 exports.show = function(req, res) {
