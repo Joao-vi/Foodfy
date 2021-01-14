@@ -51,7 +51,7 @@ exports.post = function(req, res) {
         author: `por ${author}`,
         ingredients,
         preparation,
-        information
+        information: information.replace('\r\n', '').trim()
 
     })
     fs.writeFile("data.json", JSON.stringify(data, null, 2), function(err) {
@@ -65,8 +65,44 @@ exports.post = function(req, res) {
         // return res.send(req.body)
 }
 exports.put = function(req, res) {
-    return res.redirect('/admin/recipes/0')
+    const { id } = req.body
+    let index = 0;
+    const foundRecipes = data.recipes.find((recipe, foundindex) => {
+        if (recipe.id == id) {
+            index = foundindex
+            return true
+        }
+    })
+
+    if (!foundRecipes)
+        return res.send('Receita não encontrada!')
+
+    const recipe = {
+        ...foundRecipes,
+        ...req.body,
+        id: Number(req.body.id)
+    }
+    data.recipes[index] = recipe
+    fs.writeFile("data.json", JSON.stringify(data, null, 2), (err) => {
+        if (err)
+            return res.send("Write error!")
+
+        return res.redirect(`/admin/recipes/${id}`)
+    })
 }
 exports.delete = function(req, res) {
-    return res.redirect('/admin/recipes')
+    const { id } = req.body
+
+    const filteredRecipes = data.recipes.filter((recipe) => {
+        return recipe.id != id
+    })
+
+    data.recipes = filteredRecipes
+
+    fs.writeFile("data.json", JSON.stringify(data, null, 2), (err) => {
+        if (err)
+            return res.send("Write error!")
+
+        return res.redirect(`/admin/recipes`)
+    })
 }
