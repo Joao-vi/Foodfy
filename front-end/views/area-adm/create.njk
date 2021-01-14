@@ -8,8 +8,10 @@
             <h1>Criando receita </h1>
         </div>
         <div class="create">
-            <button >Salvar receita</button>
+            <button type="submit" form="create-recipe">Salvar receita</button>
         </div>
     </div>
-    {%include 'area-adm/fields.njk'%}
+    <form id="create-recipe" method="POST" action="/admin/recipes">
+        {%include 'area-adm/fields.njk'%}
+    </form>
 {% endblock %}

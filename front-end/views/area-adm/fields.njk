@@ -45,14 +45,14 @@
                 <input 
                 required 
                 type="text" 
-                name="ingredient[]"
+                name="ingredients[]"
                 value="{{ingredient}}">
             {% endfor %}
         {% else %}
             <input 
                 required 
                 type="text" 
-                name="ingredient[]">
+                name="ingredients[]">
         {% endif %}
     </div>    
     <a href="">Adicionar novo ingrediente</a>
@@ -67,14 +67,14 @@
                 <input 
                     required 
                     type="text" 
-                    name="preparation_mode[]"
+                    name="preparation[]"
                     value="{{preparation}}">
             {% endfor %}
         {% else %}
             <input 
                 required 
                 type="text" 
-                name="preparation_mode[]">
+                name="preparation[]">
         {% endif %}
     </div>     
     <a href="">Adicionar passo</a>
@@ -87,7 +87,7 @@
         <textarea 
             required 
             type="text" 
-            name="add_information">
+            name="information">
             {{recipe.information}}
             </textarea>
     </div>     
