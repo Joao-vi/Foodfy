@@ -3,7 +3,7 @@ const nunjucks = require('nunjucks')
 const server = express()
 
 const route = require('./routes')
-const port = portNormalize("5000")
+const port = portNormalize(process.env.PORT || "5000")
 
 const methodOverride = require('method-override')
 server.use(express.urlencoded({ extended: true }))
