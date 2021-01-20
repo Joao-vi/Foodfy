@@ -47,6 +47,7 @@
     font-size: 16px;
     color: #6558C3;
     text-align: right;
+    cursor: pointer;
 }
 
 .item div:nth-child(2) textarea {

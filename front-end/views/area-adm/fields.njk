@@ -39,45 +39,53 @@
     <div>
         <h3>Ingredientes</h3>
     </div>
-    <div>
+    <div class="ingredient">
         {%if recipe.ingredients%}
             {% for ingredient in recipe.ingredients %}
-                <input 
-                required 
-                type="text" 
-                name="ingredients[]"
-                value="{{ingredient}}">
+                <div id="ingredient">
+                    <input 
+                        required 
+                        type="text" 
+                        name="ingredients[]"
+                        value="{{ingredient}}">
+                </div>
             {% endfor %}
         {% else %}
-            <input 
-                required 
-                type="text" 
-                name="ingredients[]">
+            <div id="ingredient">
+                <input 
+                    required 
+                    type="text" 
+                    name="ingredients[]">
+            </div>
         {% endif %}
     </div>    
-    <a href="">Adicionar novo ingrediente</a>
+    <a class="add-ingredient">Adicionar novo ingrediente</a>
 </div>
 <div  class="item">
     <div>
         <h3>Modo de preparo</h3>
     </div>
-    <div>
+    <div class="preparation">
         {% if recipe.preparation%}
             {% for preparation in recipe.preparation %}
+                <div id="preparation">
+                    <input 
+                        required 
+                        type="text" 
+                        name="preparation[]"
+                        value="{{preparation}}">
+                </div>
+            {% endfor %}
+        {% else %}
+            <div id="preparation">
                 <input 
                     required 
                     type="text" 
-                    name="preparation[]"
-                    value="{{preparation}}">
-            {% endfor %}
-        {% else %}
-            <input 
-                required 
-                type="text" 
-                name="preparation[]">
+                    name="preparation[]">
+            </div>
         {% endif %}
     </div>     
-    <a href="">Adicionar passo</a>
+    <a class="add-preparation" >Adicionar passo</a>
 </div>
 <div  class="item">
     <div>
