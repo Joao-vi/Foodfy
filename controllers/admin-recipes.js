@@ -51,7 +51,7 @@ exports.post = function(req, res) {
         author: `por ${author}`,
         ingredients,
         preparation,
-        information: information.replace('\r\n', '').trim()
+        information
 
     })
     fs.writeFile("data.json", JSON.stringify(data, null, 2), function(err) {
