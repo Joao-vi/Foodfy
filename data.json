@@ -52,7 +52,7 @@
         "Leve novamente ao forno até derreter a mussarela.",
         "teste"
       ],
-      "information": "                                                Pizza de liquidificador é uma receita deliciosa e supersimples de preparar. Feita toda no liquidificador, ela é bem prática para o dia a dia. Aqui no TudoGostoso você também encontra diversas delícias práticas feitas no liquidificador: massa de panqueca, torta de frango de liquidificador, pão de queijo de liquidificador, bolo de banana, bolo de chocolate e muito mais!\r\n            \r\n            \r\n            \r\n            "
+      "information": "                                                            Pizza de liquidificador é uma receita deliciosa e supersimples de preparar. Feita toda no liquidificador, ela é bem prática para o dia a dia. Aqui no TudoGostoso você também encontra diversas delícias práticas feitas no liquidificador: massa de panqueca, torta de frango de liquidificador, pão de queijo de liquidificador, bolo de banana, bolo de chocolate e muito mais!\r\n            \r\n            \r\n            \r\n            \r\n            "
     },
     {
       "id": 3,
@@ -116,7 +116,7 @@
         "O dente de alho, serve para você untar os pratos onde serão servidos o macarrão.",
         "Coloque as porções nos pratos já com o cheiro do alho, e enfeite com algumas ervas."
       ],
-      "information": "Não lave o macarrão nem passe óleo ou gordura nele depois de escorrê-lo. Coloque direto na frigideira."
+      "information": "            Não lave o macarrão nem passe óleo ou gordura nele depois de escorrê-lo. Coloque direto na frigideira.\r\n            "
     },
     {
       "id": 6,
@@ -143,16 +143,21 @@
     },
     {
       "id": 7,
-      "image": "http:/teste.com",
-      "title": "3168165",
-      "author": "por 165165",
+      "image": "https://rocketseat-cdn.s3-sa-east-1.amazonaws.com/launchbase/receitas/burger.png",
+      "title": "Teste Joao",
+      "author": "por joaoa",
       "ingredients": [
-        "516516"
+        "dcdsc",
+        "sdcdscds",
+        "cdscdscsd",
+        "cdscds"
       ],
       "preparation": [
-        "561641"
+        "cdcsdcds",
+        "cdscsd",
+        "dscdscsd"
       ],
-      "information": "            613168416\r\n            "
+      "information": "dsccccccccccccccccccccccccccccccccccc"
     }
   ]
 }

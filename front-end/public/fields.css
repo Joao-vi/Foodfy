@@ -27,18 +27,40 @@
 }
 
 .item div:nth-child(2) textarea,
-.item div:nth-child(2) input {
+.item .item-grid,
+.item .input-layout {
+    display: grid;
     width: 100%;
-    height: 50px;
+    height: 40px;
     margin: 10px 0px 15px 0px;
-    padding: 0px 20px;
-    background: #FFFFFF;
+    padding-left: 20px;
+    background: white;
     border: 1px solid #DDDDDD;
     border-radius: 4px;
     border-radius: 4px;
     font-family: Roboto-Regular;
     font-size: 16px;
     color: #111111;
+    align-items: center;
+}
+
+.item .input-layout input,
+.item .item-grid input {
+    outline: none;
+    border: 0px;
+    height: 80%;
+}
+
+.item-grid {
+    display: grid;
+    grid-template-columns: 1fr 30px;
+    text-align: center;
+    align-items: center;
+}
+
+.item .item-grid i {
+    margin: 0 auto;
+    cursor: pointer;
 }
 
 .item a {

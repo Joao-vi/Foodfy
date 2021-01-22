@@ -2,7 +2,7 @@
     <div>
         <h3>Imagem da receita</h3>
     </div>
-    <div>
+    <div class="input-layout">
         <input 
             required 
             type="url" 
@@ -15,7 +15,7 @@
     <div>
         <h3>Nome da receita</h3>
     </div>
-    <div>
+    <div class="input-layout">
         <input 
             required 
             type="text" 
@@ -27,7 +27,7 @@
     <div>
         <h3>Autor da receita</h3>
     </div>
-    <div>
+    <div class="input-layout">
         <input 
             required 
             type="text" 
@@ -42,20 +42,22 @@
     <div class="ingredient">
         {%if recipe.ingredients%}
             {% for ingredient in recipe.ingredients %}
-                <div id="ingredient">
+                <div class="input-layout item-grid"  id="ingredient">
                     <input 
                         required 
                         type="text" 
                         name="ingredients[]"
                         value="{{ingredient}}">
+                    <!--<i  type="hidden" id="delete-item" class="material-icons">close</i>-->
                 </div>
             {% endfor %}
         {% else %}
-            <div id="ingredient">
+            <div class="input-layout item-grid" id="ingredient">
                 <input 
                     required 
                     type="text" 
                     name="ingredients[]">
+                <!--<i  type="hidden" id="delete-item" class="material-icons">close</i>-->
             </div>
         {% endif %}
     </div>    
@@ -68,20 +70,22 @@
     <div class="preparation">
         {% if recipe.preparation%}
             {% for preparation in recipe.preparation %}
-                <div id="preparation">
+                 <div class="input-layout item-grid"  id="preparation">
                     <input 
                         required 
                         type="text" 
                         name="preparation[]"
                         value="{{preparation}}">
+                    <!--<i  type="hidden" id="delete-item" class="material-icons">close</i>-->
                 </div>
             {% endfor %}
         {% else %}
-            <div id="preparation">
+            <div class="input-layout item-grid"  id="preparation">
                 <input 
                     required 
                     type="text" 
                     name="preparation[]">
+                <!--<i  type="hidden" id="delete-item" class="material-icons">close</i>-->
             </div>
         {% endif %}
     </div>     
