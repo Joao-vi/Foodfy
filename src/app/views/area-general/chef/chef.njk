@@ -3,22 +3,17 @@
 <link rel="stylesheet" href="/recipe.css">
 {% endblock %}
 {% block content %}
-    <div class="detail-admin"> 
-        <div id="title-acessed">
-            <h1>Receita: {{recipe.title}}</h1>
-        </div>
-        <button  onclick="window.location.href='/admin/recipes/{{recipe.id}}/edit'" >Editar receita</button>
-    </div>
     <div class="recipe-banner">
         <img src="{{recipe.image}}" alt="imagem de {{recipe.image}}">
-        <div class="title-info">
-            <h1>{{recipe.title}}</h1>
-            <p>{{recipe.author}}</p>
-        </div>
+    <div class="title-info">
+        <h1>{{recipe.title}}</h1>
+        <p>{{recipe.author}}</p>
+    </div>
     </div>
     <div  class="ingredientes">
         <div class="title">
             <h3>Ingredientes</h3>
+            <p class="hide_1">Esconder</p>
         </div>
          <ul id="tohide_1">
             {% for ingredient in recipe.ingredients %}
@@ -29,6 +24,7 @@
     <div  class="modo-de-preparo">
         <div class="title">
             <h3>Modo de preparo</h3>
+            <p class="hide_2">Esconder</p>
         </div>
         <ul id="tohide_2">
             {% for preparation in recipe.preparation %}
@@ -40,6 +36,7 @@
     <div  class="informacoes">
          <div class="title">
             <h3>Informações adicionais</h3>
+            <p class="hide_3">Esconder</p>
         </div>
         <p id="tohide_3">{{recipe.information}}</p>
     </div>

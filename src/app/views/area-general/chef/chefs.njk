@@ -1,0 +1,26 @@
+{% extends "../../layout.njk" %} 
+
+{% block head %}
+    <link rel="stylesheet" href="/section.css">
+   
+    <title>Receitas</title>
+{% endblock%}
+{% block content %}
+        <section id="revenue" class="more-acessed-cards">
+            {% for i in range(0, 2) %}
+                {% for recipe in recipes %}
+                    <div class="revenue-card grid" id="{{recipe.id}}">
+                        <div class="img-card">
+                            <img src="{{recipe.image}}" alt="imagem de {{recipe.image}}">
+                        </div>
+                        <div class="info-card">
+                            <h1>{{recipe.title}}</h1>
+                            <p>{{recipe.author}}</p>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% endfor %}
+        </section>
+    </div>
+    
+    {% endblock%}

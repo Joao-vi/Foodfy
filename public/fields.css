@@ -44,6 +44,7 @@
     align-items: center;
 }
 
+.item .input-layout select,
 .item .input-layout input,
 .item .item-grid input {
     outline: none;
@@ -75,4 +76,22 @@
 .item div:nth-child(2) textarea {
     height: 260px;
     padding-top: 10px;
+}
+
+.item .input-layout select {
+    margin-right: 20px;
+    color: #999;
+}
+
+.item .input-layout select option:first-child {
+    color: #999;
+}
+
+.item .input-layout select option {
+    font-size: 16px;
+    color: #111;
+}
+
+.item .input-layout {
+    box-sizing: border-box;
 }

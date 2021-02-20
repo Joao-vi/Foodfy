@@ -11,19 +11,5 @@
         <div id="title-acessed">
             <h1>Gerenciar receitas</h1>
         </div>
-        <section class="more-acessed-cards admin">
-            {% for recipe in recipes %}
-                <div class="revenue-card">
-                    <div class="img-card">
-                        <img src="{{recipe.image}}" alt="imagem de {{recipe.image}}">
-                    </div>
-                    <div class="info-card">
-                        <h1>{{recipe.title}}</h1>
-                        <p>{{recipe.author}}</p>
-                        <a href="/admin/recipes/{{recipe.id}}">Visualizar</a>
-                    </div>
-
-                </div>
-            {% endfor %}
-        </section>
+         {%include 'area-adm/recipe-cards.njk'%}
 {% endblock %}

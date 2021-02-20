@@ -39,41 +39,93 @@
 }
 
 
-/*---------- área adm ----------*/
+/*---------- área adm recipes----------*/
 
-.admin {
+.admin-recipe {
     margin-top: 30px;
     grid-template-columns: 1fr 1fr;
     gap: 20px;
 }
 
-.admin .revenue-card {
-    display: flex;
+.admin-recipe .revenue-card {
+    display: grid;
+    grid-template-columns: 172px 1fr;
 }
 
-.admin .img-card img {
+.admin-recipe .img-card img {
     width: 172px;
     height: 80px;
     margin-top: 0px;
     border-radius: 10px;
 }
 
-.admin .info-card {
+.admin-recipe .info-card {
     margin-top: 0px;
     margin-left: 20px;
 }
 
-.admin .info-card h1 {
+.admin-recipe .info-card h1 {
     line-height: 21px;
     margin: 0px;
 }
 
-.admin .info-card p {
+.admin-recipe .info-card p {
     margin: 5px 0px 10px 0px;
     line-height: 16px;
 }
 
-.admin .info-card a {
+.admin-recipe .info-card a {
+    font-family: Roboto-Bold;
+    font-size: 14px;
+    color: #6558C3;
+    line-height: 16px;
+}
+
+
+/*---------- área adm recipes----------*/
+
+.admin-chef {
+    margin-top: 30px;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 20px;
+}
+
+.admin-chef .revenue-card {
+    display: grid;
+    grid-template-columns: 64px 1fr;
+    box-sizing: border-box;
+    border: 1px solid #eee;
+    border-radius: 15px;
+    padding: 5px;
+}
+
+.admin-chef .img-card {
+    display: block;
+    width: 64px;
+    height: 64px;
+    align-self: center;
+}
+
+.admin-chef .img-card img {
+    width: 64px;
+    height: 64px;
+    margin-top: 0px;
+    border-radius: 50%;
+}
+
+.admin-chef .info-card {
+    margin-top: 0px;
+    margin-left: 20px;
+    display: block;
+}
+
+.admin-chef .info-card h1 {
+    line-height: 21px;
+    margin: 0px;
+    margin-bottom: 10px;
+}
+
+.admin-chef .info-card a {
     font-family: Roboto-Bold;
     font-size: 14px;
     color: #6558C3;

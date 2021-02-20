@@ -83,3 +83,33 @@
 .detail-admin .create button {
     background: #6558C3 100%;
 }
+
+
+/*--------- chef-detail ---------*/
+
+.chef-avatar {
+    text-align: center;
+}
+
+.chef-avatar img {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+}
+
+.chef-avatar .title-info {
+    margin-top: 30px;
+}
+
+.chef-avatar .title-info h1 {
+    margin: 0px;
+}
+
+.chef-avatar .title-info p {
+    margin-top: 4px;
+    margin-bottom: 50px;
+}
+
+#chef-recipe {
+    margin: 0px;
+}

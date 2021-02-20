@@ -3,17 +3,21 @@
 <link rel="stylesheet" href="/fields.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 {% endblock %}
+{% block header%}
+        <a href="/admin/recipes">Receitas</a>
+        <a href="/admin/chefs">Chefs</a>
+{% endblock %}
 {% block content %}
     <div class="detail-admin"> 
         <div id="title-acessed">
-            <h1>Criando receita </h1>
+            <h1>Criando chef </h1>
         </div>
         <div class="create">
-            <button type="submit" form="create-recipe">Salvar receita</button>
+            <button type="submit" form="create-recipe">Salvar chef</button>
         </div>
     </div>
-    <form id="create-recipe" method="POST" action="/admin/recipes">
-        {%include 'area-adm/fields.njk'%}
+    <form id="create-recipe" method="POST" action="/admin/chefs">
+        {%include 'area-adm/chefs/fields.njk'%}
     </form>
     <script>
         

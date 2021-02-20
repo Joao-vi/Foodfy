@@ -4,9 +4,13 @@ const { age, date, graduation } = require('../../lib/utils')
 module.exports = {
     all(callback) {
 
-        const query = `SELECT * FROM recipes ORDER BY title ASC`
+        const query = `
+            SELECT recipes.*, chefs.name AS chef_name 
+            FROM recipes 
+            LEFT JOIN chefs ON (recipes.chef_id = chefs.id)
+            ORDER BY title ASC`
         db.query(query, (err, results) => {
-            if (err) throw `Database eroor = ${err}`
+            if (err) throw `Database error = ${err}`
 
             callback(results.rows)
         })
@@ -25,7 +29,7 @@ module.exports = {
                 RETURNING id
                 `
         const values = [
-            data.chef_id,
+            data.chef,
             data.image,
             data.title,
             data.ingredients,
@@ -35,7 +39,7 @@ module.exports = {
 
         ]
         db.query(query, values, (err, results) => {
-            if (err) throw `Database eroor = ${err}`
+            if (err) throw `Database error = ${err}`
 
             callback(results.rows[0])
         })
@@ -48,7 +52,7 @@ module.exports = {
             WHERE recipes.id IN (${id})
             `
         db.query(query, (err, results) => {
-            if (err) throw `Database eroor = ${err}`
+            if (err) throw `Database error = ${err}`
 
             callback(results.rows[0])
         })
@@ -66,7 +70,7 @@ module.exports = {
         WHERE id = $7
         `
         const values = [
-            data.chef_id,
+            data.chef,
             data.image,
             data.title,
             data.ingredients,
@@ -76,7 +80,7 @@ module.exports = {
 
         ]
         db.query(query, values, (err, results) => {
-            if (err) throw `Database eroor = ${err}`
+            if (err) throw `Database error = ${err}`
 
             callback()
         })
@@ -84,7 +88,7 @@ module.exports = {
     delete(id, callback) {
         const query = `DELETE FROM recipes WHERE id = ${id} `
         db.query(query, (err) => {
-            if (err) throw `Database eroor = ${err}`
+            if (err) throw `Database error = ${err}`
 
             callback()
         })
@@ -92,7 +96,7 @@ module.exports = {
     chefsSelectedOptions(callback) {
         const query = `SELECT name, id FROM chefs ORDER BY name ASC`
         db.query(query, (err, results) => {
-            if (err) throw `Database eroor = ${err}`
+            if (err) throw `Database error = ${err}`
 
             callback(results.rows)
         })
@@ -126,7 +130,7 @@ module.exports = {
         `
 
         db.query(query, (err, results) => {
-            if (err) throw `Database eroor = ${err}`
+            if (err) throw `Database error = ${err}`
 
             callback(results.rows)
         })

@@ -3,27 +3,31 @@
 <link rel="stylesheet" href="/fields.css">
 <link rel="stylesheet" href="/recipe.css">
 {% endblock %}
+{% block header%}
+        <a href="/admin/recipes">Receitas</a>
+        <a href="/admin/chefs">Chefs</a>
+{% endblock %}
 {% block content %}
     <div class="detail-admin"> 
         <div id="title-acessed">
-            <h1>Editando receita</h1>
+            <h1>Editando chef</h1>
         </div>
         <div>
             <button form="form-delete" type="submit">Deletar</button>
-            <button form="form-put" type="submit">Salvar receita</button>
+            <button form="form-put" type="submit">Salvar chef</button>
         </div>
     </div>
-    <form id="form-put" action="/admin/recipes?_method=PUT" method="POST">
+    <form id="form-put" action="/admin/chefs?_method=PUT" method="POST">
         <input 
             type="hidden"
             name="id"
-            value = "{{recipe.id}}">
-        {%include 'area-adm/fields.njk'%}
+            value = "{{chef.id}}">
+        {%include 'area-adm/chefs/fields.njk'%}
     </form>
-    <form id="form-delete" action="/admin/recipes?_method=DELETE" method="POST">
+    <form id="form-delete" action="/admin/chefs?_method=DELETE" method="POST">
         <input 
             type="hidden"
             name="id"
-            value = "{{recipe.id}}">
+            value = "{{chef.id}}">
     </form>
 {% endblock %}

@@ -4,11 +4,17 @@ const { age, date, graduation } = require('../../lib/utils')
 module.exports = {
     all(callback) {
 
+        //const query = `
+        //    SELECT chefs.*, COUNT (recipes) AS total_recipes
+        //    FROM chefs
+        //    LEFT JOIN recipes ON (recipes.chef_id = chefs.id)
+        //    GROUP BY chefs.id ORDER BY total_recipes DESC
+        //    `
+
         const query = `
-            SELECT chefs.*, COUNT (recipes) AS total_recipes
+            SELECT chefs.*
             FROM chefs
-            LEFT JOIN recipes ON (recipes.chef_id = chefs.id)
-            GROUP BY chefs.id ORDER BY total_recipes DESC
+            ORDER BY name ASC
             `
         db.query(query, (err, results) => {
             if (err) throw `Database eroor = ${err}`
@@ -37,7 +43,13 @@ module.exports = {
         })
     },
     find(id, callback) {
-        const query = `SELECT * FROM chefs WHERE id IN (${id})`
+        const query = `
+            SELECT chefs.*, COUNT (recipes) AS total_recipes
+            FROM chefs 
+            LEFT JOIN recipes ON (chefs.id = recipes.chef_id)
+            WHERE chefs.id=${id}
+            GROUP BY chefs.id 
+            `
         db.query(query, (err, results) => {
             if (err) throw `Database eroor = ${err}`
 
@@ -64,7 +76,8 @@ module.exports = {
         const query = `
         UPDATE chefs SET
             name= $1,
-            avatar_url = $2,
+            avatar_url = $2
+
             WHERE id = $3
         `
         const values = [
@@ -116,6 +129,19 @@ module.exports = {
             LIMIT ${limit} OFFSET ${offset}
         `
 
+        db.query(query, (err, results) => {
+            if (err) throw `Database eroor = ${err}`
+
+            callback(results.rows)
+        })
+    },
+    findForDetail(id, callback) {
+        const query = `
+            SELECT  recipes.id, recipes.chef_id, recipes.image, recipes.title, chefs.name AS chef_name
+            FROM recipes 
+            LEFT JOIN chefs ON (recipes.chef_id  = chefs.id)
+            WHERE recipes.chef_id=${id}
+            `
         db.query(query, (err, results) => {
             if (err) throw `Database eroor = ${err}`
 

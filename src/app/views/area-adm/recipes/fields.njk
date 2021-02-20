@@ -25,17 +25,17 @@
 </div>
 <div  class="item">
     <div>
-        <h3>Autor da receita</h3>
+        <h3>Chef</h3>
     </div>
     <div class="input-layout">
-        <select name="chef_id">
+        <select name="chef">
+             <option value="" disabled selected>Selecione um chef</option>
             {% for chef in chefOptions %}
                 <option 
-                value="{{recipe.chef_id}}"
+                value="{{chef.id}}"
                 {% if recipe.chef_id == chef.id %}
                     selected
                 {% endif %}>
-                >
                 {{chef.name}}
                 </option>
             {% endfor %}

@@ -4,12 +4,14 @@ const Recipe = require('../models/recipes')
 
 exports.index = function(req, res) {
     Recipe.all((recipes) => {
-
         return res.render('area-adm/recipes/index', { recipes })
     })
 }
 exports.create = function(req, res) {
-    return res.render('area-adm/recipes/create')
+    Recipe.chefsSelectedOptions((options) => {
+        return res.render('area-adm/recipes/create', { chefOptions: options })
+    })
+
 }
 exports.show = function(req, res) {
     const { id } = req.params
@@ -20,7 +22,9 @@ exports.show = function(req, res) {
 exports.edit = function(req, res) {
     const { id } = req.params
     Recipe.find(id, (recipe) => {
-        return res.render('area-adm/recipes/edit', { recipe })
+        Recipe.chefsSelectedOptions((options) => {
+            return res.render('area-adm/recipes/edit', { recipe, chefOptions: options })
+        })
     })
 
 }
