@@ -7,12 +7,12 @@ const port = portNormalize(process.env.PORT || "5000")
 
 const methodOverride = require('method-override')
 server.use(express.urlencoded({ extended: true }))
-server.use(express.static('front-end/public'))
+server.use(express.static('public'))
 server.use(methodOverride("_method"))
 server.use(route)
 server.set('view engine', 'njk')
 
-nunjucks.configure('front-end/views', {
+nunjucks.configure('./src/app/views', {
     express: server,
     autoescape: false,
     noCache: true
