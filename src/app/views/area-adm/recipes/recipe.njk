@@ -1,0 +1,46 @@
+{% extends "../../layout.njk" %} 
+{% block head %}
+<link rel="stylesheet" href="/recipe.css">
+{% endblock %}
+{% block content %}
+    <div class="detail-admin"> 
+        <div id="title-acessed">
+            <h1>Receita: {{recipe.title}}</h1>
+        </div>
+        <button  onclick="window.location.href='/admin/recipes/{{recipe.id}}/edit'" >Editar receita</button>
+    </div>
+    <div class="recipe-banner">
+        <img src="{{recipe.image}}" alt="imagem de {{recipe.image}}">
+        <div class="title-info">
+            <h1>{{recipe.title}}</h1>
+            <p>{{recipe.author}}</p>
+        </div>
+    </div>
+    <div  class="ingredientes">
+        <div class="title">
+            <h3>Ingredientes</h3>
+        </div>
+         <ul id="tohide_1">
+            {% for ingredient in recipe.ingredients %}
+            <li>{{ingredient}}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div  class="modo-de-preparo">
+        <div class="title">
+            <h3>Modo de preparo</h3>
+        </div>
+        <ul id="tohide_2">
+            {% for preparation in recipe.preparation %}
+            <li>{{preparation}}</li>
+            {% endfor %}
+        </ul>
+
+    </div>
+    <div  class="informacoes">
+         <div class="title">
+            <h3>Informações adicionais</h3>
+        </div>
+        <p id="tohide_3">{{recipe.information}}</p>
+    </div>
+{% endblock %}

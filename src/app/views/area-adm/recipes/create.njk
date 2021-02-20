@@ -1,0 +1,21 @@
+{% extends "../../layout.njk" %} 
+{% block head %}
+<link rel="stylesheet" href="/fields.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+{% endblock %}
+{% block content %}
+    <div class="detail-admin"> 
+        <div id="title-acessed">
+            <h1>Criando receita </h1>
+        </div>
+        <div class="create">
+            <button type="submit" form="create-recipe">Salvar receita</button>
+        </div>
+    </div>
+    <form id="create-recipe" method="POST" action="/admin/recipes">
+        {%include 'area-adm/fields.njk'%}
+    </form>
+    <script>
+        
+    </script>
+{% endblock %}

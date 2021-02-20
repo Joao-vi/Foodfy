@@ -5,10 +5,10 @@ module.exports = {
     all(callback) {
 
         const query = `
-            SELECT teachers.*, COUNT (students) AS total_students
-            FROM teachers
-            LEFT JOIN students ON (students.teacher_id = teachers.id)
-            GROUP BY teachers.id ORDER BY total_students DESC
+            SELECT chefs.*, COUNT (recipes) AS total_recipes
+            FROM chefs
+            LEFT JOIN recipes ON (recipes.chef_id = chefs.id)
+            GROUP BY chefs.id ORDER BY total_recipes DESC
             `
         db.query(query, (err, results) => {
             if (err) throw `Database eroor = ${err}`
@@ -18,26 +18,17 @@ module.exports = {
     },
     create(data, callback) {
         const query = `
-            INSERT INTO teachers (
-                avatar_url,
+            INSERT INTO chefs (
                 name,
-                birth_date,
-                education_level,
-                class_type,
-                subjects_taught,
+                avatar_url,
                 created_at
-                ) VALUES ($1,$2,$3,$4,$5, $6,$7) 
+                ) VALUES ($1,$2,$3) 
                 RETURNING id
                 `
         const values = [
-            data.avatar_url,
             data.name,
-            date(data.birth_date).iso,
-            data.education_level,
-            data.class_type,
-            data.subjects_taught,
+            data.avatar_url,
             date(Date.now()).iso
-
         ]
         db.query(query, values, (err, results) => {
             if (err) throw `Database eroor = ${err}`
@@ -46,7 +37,7 @@ module.exports = {
         })
     },
     find(id, callback) {
-        const query = `SELECT * FROM teachers WHERE id IN (${id})`
+        const query = `SELECT * FROM chefs WHERE id IN (${id})`
         db.query(query, (err, results) => {
             if (err) throw `Database eroor = ${err}`
 
@@ -55,13 +46,13 @@ module.exports = {
     },
     findBy(filter, callback) {
         const query = `
-            SELECT teachers.*, COUNT (students) AS total_students
-            FROM teachers
-            LEFT JOIN students ON (students.teacher_id = teachers.id)
-            WHERE teachers.name ILIKE '%${filter}%'
-            OR teachers.subjects_taught ILIKE '%${filter}%'
-            GROUP BY teachers.id 
-            ORDER BY total_students DESC
+            SELECT chefs.*, COUNT (recipes) AS total_recipes
+            FROM chefs
+            LEFT JOIN recipes ON (recipes.chef_id = chefs.id)
+            WHERE chefs.name ILIKE '%${filter}%'
+            OR chefs.subjects_taught ILIKE '%${filter}%'
+            GROUP BY chefs.id 
+            ORDER BY total_recipes DESC
             `
         db.query(query, (err, results) => {
             if (err) throw `Database eroor = ${err}`
@@ -71,24 +62,15 @@ module.exports = {
     },
     update(data, callback) {
         const query = `
-        UPDATE teachers SET
-            avatar_url = $1,
-            name= $2,
-            birth_date= $3,
-            education_level= $4,
-            class_type= $5,
-            subjects_taught= $6
-        WHERE id = $7
+        UPDATE chefs SET
+            name= $1,
+            avatar_url = $2,
+            WHERE id = $3
         `
         const values = [
-            data.avatar_url,
             data.name,
-            date(data.birth_date).iso,
-            data.education_level,
-            data.class_type,
-            data.subjects_taught,
+            data.avatar_url,
             data.id
-
         ]
         db.query(query, values, (err, results) => {
             if (err) throw `Database eroor = ${err}`
@@ -97,7 +79,7 @@ module.exports = {
         })
     },
     delete(id, callback) {
-        const query = `DELETE FROM teachers WHERE id = ${id} `
+        const query = `DELETE FROM chefs WHERE id = ${id} `
         db.query(query, (err) => {
             if (err) throw `Database eroor = ${err}`
 
@@ -110,27 +92,27 @@ module.exports = {
         let query = ``,
             filter_query = ``,
             total_query = `(
-                SELECT COUNT(*) FROM teachers
+                SELECT COUNT(*) FROM chefs
             ) AS total`
 
         if (filter) {
             filter_query = `
-                WHERE teachers.name ILIKE '%${filter}%'
-                OR teachers.subjects_taught ILIKE '%${filter}%'
+                WHERE chefs.name ILIKE '%${filter}%'
+                OR chefs.subjects_taught ILIKE '%${filter}%'
             `
             total_query = `(
-                SELECT COUNT(*) FROM teachers
+                SELECT COUNT(*) FROM chefs
                 ${filter_query}
             ) AS total
                 `
         }
         query = `
-            SELECT teachers.*, ${total_query}, COUNT (students) AS total_students
-            FROM teachers
-            LEFT JOIN students ON (students.teacher_id = teachers.id)
+            SELECT chefs.*, ${total_query}, COUNT (recipes) AS total_recipes
+            FROM chefs
+            LEFT JOIN recipes ON (recipes.chef_id = chefs.id)
             ${filter_query}
-            GROUP BY teachers.id 
-            ORDER BY total_students DESC
+            GROUP BY chefs.id 
+            ORDER BY total_recipes DESC
             LIMIT ${limit} OFFSET ${offset}
         `
 

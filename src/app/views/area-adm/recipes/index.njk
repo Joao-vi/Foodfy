@@ -1,8 +1,12 @@
-{% extends "../layout.njk" %} 
+{% extends "../../layout.njk" %} 
 {% block head %}
     <link rel="stylesheet" href="/index.css">
     <link rel="stylesheet" href="/section.css">
 {% endblock%}
+{% block header%}
+        <a href="/admin/recipes">Receitas</a>
+        <a href="/admin/chefs">Chefs</a>
+{% endblock %}
 {% block content %}
         <div id="title-acessed">
             <h1>Gerenciar receitas</h1>

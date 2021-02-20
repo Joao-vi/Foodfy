@@ -1,0 +1,29 @@
+{% extends "../../layout.njk" %} 
+{% block head %}
+<link rel="stylesheet" href="/fields.css">
+<link rel="stylesheet" href="/recipe.css">
+{% endblock %}
+{% block content %}
+    <div class="detail-admin"> 
+        <div id="title-acessed">
+            <h1>Editando receita</h1>
+        </div>
+        <div>
+            <button form="form-delete" type="submit">Deletar</button>
+            <button form="form-put" type="submit">Salvar receita</button>
+        </div>
+    </div>
+    <form id="form-put" action="/admin/recipes?_method=PUT" method="POST">
+        <input 
+            type="hidden"
+            name="id"
+            value = "{{recipe.id}}">
+        {%include 'area-adm/fields.njk'%}
+    </form>
+    <form id="form-delete" action="/admin/recipes?_method=DELETE" method="POST">
+        <input 
+            type="hidden"
+            name="id"
+            value = "{{recipe.id}}">
+    </form>
+{% endblock %}

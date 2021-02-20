@@ -4,7 +4,7 @@ const { age, date, graduation } = require('../../lib/utils')
 module.exports = {
     all(callback) {
 
-        const query = `SELECT * FROM students ORDER BY name ASC`
+        const query = `SELECT * FROM recipes ORDER BY name ASC`
         db.query(query, (err, results) => {
             if (err) throw `Database eroor = ${err}`
 
@@ -13,25 +13,25 @@ module.exports = {
     },
     create(data, callback) {
         const query = `
-            INSERT INTO students (
-                avatar_url,
-                name,
-                email,
-                birth_date,
-                school_year,
-                workload,
-                teacher_id
+            INSERT INTO recipes (
+                chef_id,
+                image,
+                title,
+                ingredients,
+                preparation,
+                information,
+                created_at
                 ) VALUES ($1,$2,$3,$4,$5, $6, $7) 
                 RETURNING id
                 `
         const values = [
-            data.avatar_url,
-            data.name,
-            data.email,
-            date(data.birth_date).iso,
-            data.school_year,
-            data.workload,
-            data.teacher
+            data.chef_id,
+            data.image,
+            data.title,
+            data.ingredients,
+            data.preparation,
+            data.information,
+            date(Date.now()).iso
 
         ]
         db.query(query, values, (err, results) => {
@@ -42,10 +42,10 @@ module.exports = {
     },
     find(id, callback) {
         const query = `
-            SELECT students.*, teachers.name AS teacher_name 
-            FROM students 
-            LEFT JOIN teachers ON (students.teacher_id = teachers.id)
-            WHERE students.id IN (${id})
+            SELECT recipes.*, chefs.name AS chef_name 
+            FROM recipes 
+            LEFT JOIN chefs ON (recipes.chef_id = chefs.id)
+            WHERE recipes.id IN (${id})
             `
         db.query(query, (err, results) => {
             if (err) throw `Database eroor = ${err}`
@@ -55,26 +55,23 @@ module.exports = {
     },
     update(data, callback) {
         const query = `
-        UPDATE students SET
-            avatar_url = $1,
-            name= $2,
-            email= $3,
-            birth_date= $4,
-            school_year= $5,
-            workload= $6,
-            teacher_id=$7
+        UPDATE recipes SET
+            chef_id = $1,
+            image= $2,
+            title= $3,
+            ingredients= $4,
+            preparation= $5,
+            information= $6
 
-        WHERE id = $8
+        WHERE id = $7
         `
         const values = [
-            data.avatar_url,
-            data.name,
-            data.email,
-            date(data.birth_date).iso,
-            data.school_year,
-            data.workload,
-            data.teacher,
-            data.id
+            data.chef_id,
+            data.image,
+            data.title,
+            data.ingredients,
+            data.preparation,
+            data.information
 
         ]
         db.query(query, values, (err, results) => {
@@ -84,15 +81,15 @@ module.exports = {
         })
     },
     delete(id, callback) {
-        const query = `DELETE FROM students WHERE id = ${id} `
+        const query = `DELETE FROM recipes WHERE id = ${id} `
         db.query(query, (err) => {
             if (err) throw `Database eroor = ${err}`
 
             callback()
         })
     },
-    teachersSelectedOptions(callback) {
-        const query = `SELECT name, id FROM teachers ORDER BY name ASC`
+    chefsSelectedOptions(callback) {
+        const query = `SELECT name, id FROM chefs ORDER BY name ASC`
         db.query(query, (err, results) => {
             if (err) throw `Database eroor = ${err}`
 
@@ -105,25 +102,25 @@ module.exports = {
         let query = ``,
             filter_query = ``,
             total_query = `(
-                SELECT COUNT(*) FROM students
+                SELECT COUNT(*) FROM recipes
             ) AS total`
 
         if (filter) {
             filter_query = `
-                WHERE students.name ILIKE '%${filter}%'
-                OR students.email ILIKE '%${filter}%'
+                WHERE recipes.name ILIKE '%${filter}%'
+                OR recipes.email ILIKE '%${filter}%'
             `
             total_query = `(
-                SELECT COUNT(*) FROM students
+                SELECT COUNT(*) FROM recipes
                 ${filter_query}
             ) AS total
                 `
         }
         query = `
-            SELECT students.*, ${total_query}
-            FROM students
+            SELECT recipes.*, ${total_query}
+            FROM recipes
             ${filter_query}
-            ORDER BY students.name   DESC
+            ORDER BY recipes.name   DESC
             LIMIT ${limit} OFFSET ${offset}
         `
 
