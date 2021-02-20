@@ -18,7 +18,7 @@
             type="hidden"
             name="id"
             value = "{{recipe.id}}">
-        {%include 'area-adm/fields.njk'%}
+        {%include 'area-adm/recipes/fields.njk'%}
     </form>
     <form id="form-delete" action="/admin/recipes?_method=DELETE" method="POST">
         <input 

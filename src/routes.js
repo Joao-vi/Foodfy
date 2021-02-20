@@ -9,12 +9,13 @@ const chefs = require('./app/controllers/chefs')
 
 routes.get('/', recipes.index)
 routes.get('/about', recipes.about)
+
+
 routes.get('/recipes', recipes.showAll)
 routes.get('/recipe/:id', recipes.show)
 
-routes.get('/', chefs.index)
 routes.get('/chefs', chefs.showAll)
-routes.get('/che/:id', chefs.show)
+routes.get('/chefs/:id', chefs.show)
 
 
 routes.get("/admin/recipes", recipesAdmin.index); // Mostrar a lista de receitas

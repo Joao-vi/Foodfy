@@ -1,15 +1,9 @@
 const fs = require('fs')
 const data = require('../../../data.json')
 
-exports.index = function(req, res) {
 
-    return res.render('area-general/index', { recipes: data.recipes })
-}
-exports.about = function(req, res) {
-    return res.render('area-general/about')
-}
 exports.showAll = function(req, res) {
-    return res.render('area-general/recipes', { recipes: data.recipes })
+    return res.render('area-general/chef/chefs', { recipes: data.recipes })
 }
 exports.show = function(req, res) {
     const { id } = req.params
@@ -19,5 +13,5 @@ exports.show = function(req, res) {
     if (!foundRecipe)
         return res.send('Receita not Found')
 
-    return res.render('area-general/recipe', { recipe: foundRecipe })
+    return res.render('area-general/chef/chef', { recipe: foundRecipe })
 }

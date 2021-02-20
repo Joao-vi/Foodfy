@@ -4,7 +4,7 @@ const { age, date, graduation } = require('../../lib/utils')
 module.exports = {
     all(callback) {
 
-        const query = `SELECT * FROM recipes ORDER BY name ASC`
+        const query = `SELECT * FROM recipes ORDER BY title ASC`
         db.query(query, (err, results) => {
             if (err) throw `Database eroor = ${err}`
 
@@ -71,7 +71,8 @@ module.exports = {
             data.title,
             data.ingredients,
             data.preparation,
-            data.information
+            data.information,
+            data.id
 
         ]
         db.query(query, values, (err, results) => {

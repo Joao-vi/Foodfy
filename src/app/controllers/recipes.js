@@ -9,7 +9,7 @@ exports.about = function(req, res) {
     return res.render('area-general/about')
 }
 exports.showAll = function(req, res) {
-    return res.render('area-general/recipes', { recipes: data.recipes })
+    return res.render('area-general/recipe/recipes', { recipes: data.recipes })
 }
 exports.show = function(req, res) {
     const { id } = req.params
@@ -19,5 +19,5 @@ exports.show = function(req, res) {
     if (!foundRecipe)
         return res.send('Receita not Found')
 
-    return res.render('area-general/recipe', { recipe: foundRecipe })
+    return res.render('area-general/recipe/recipe', { recipe: foundRecipe })
 }
