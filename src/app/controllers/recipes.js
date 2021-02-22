@@ -1,23 +1,26 @@
 const fs = require('fs')
-const data = require('../../../data.json')
+const Recipe = require('../models/recipes')
 
 exports.index = function(req, res) {
-
-    return res.render('area-general/index', { recipes: data.recipes })
+    Recipe.all((recipes) => {
+        return res.render('area-general/index', { recipes })
+    })
 }
 exports.about = function(req, res) {
     return res.render('area-general/about')
 }
+
+
 exports.showAll = function(req, res) {
-    return res.render('area-general/recipe/recipes', { recipes: data.recipes })
+    Recipe.all((recipes) => {
+        return res.render('area-general/recipes/recipes', { recipes })
+    })
 }
 exports.show = function(req, res) {
     const { id } = req.params
 
-    const foundRecipe = data.recipes.find((recipe) => { return recipe.id == id })
+    Recipe.find(id, (recipe) => {
+        return res.render('area-general/recipes/recipe', { recipe })
+    })
 
-    if (!foundRecipe)
-        return res.send('Receita not Found')
-
-    return res.render('area-general/recipe/recipe', { recipe: foundRecipe })
 }

@@ -1,4 +1,4 @@
-const cards = document.querySelectorAll('.revenue-card.grid')
+const cards = document.querySelectorAll('.revenue-card')
 const hides = [document.querySelector('.hide_1'), document.querySelector('.hide_2'), document.querySelector('.hide_3')]
 const info = [document.querySelector('#tohide_1'), document.querySelector('#tohide_2'), document.querySelector('#tohide_3')]
 let IngredineteOrPreparation = ''

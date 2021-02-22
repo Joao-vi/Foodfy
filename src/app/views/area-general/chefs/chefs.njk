@@ -1,0 +1,25 @@
+{% extends "../../layout.njk" %} 
+
+{% block head %}
+    <link rel="stylesheet" href="/section.css">
+   
+    <title>Receitas</title>
+{% endblock%}
+{% block content %}
+         <section class="more-acessed-cards admin-chef">
+            {% for chef in chefs %}
+                <div class="revenue-card">
+                    <div class="img-card">
+                        <img src="{{chef.avatar_url}}" alt="imagem de {{chef.avatar_url}}">
+                    </div>
+                    <div class="info-card">
+                        <h1>{{chef.name}}</h1>
+                        <p>{{chef.total_recipes}} receitas</p>
+                    </div>
+
+                </div>
+            {% endfor %}
+        </section>
+    </div>
+    
+    {% endblock%}

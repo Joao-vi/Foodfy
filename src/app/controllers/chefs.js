@@ -1,17 +1,15 @@
-const fs = require('fs')
-const data = require('../../../data.json')
-
+const Chefs = require('../models/chefs')
 
 exports.showAll = function(req, res) {
-    return res.render('area-general/chef/chefs', { recipes: data.recipes })
+    Chefs.all((chefs) => {
+        return res.render('area-general/chefs/chefs', { chefs })
+
+    })
 }
 exports.show = function(req, res) {
     const { id } = req.params
+    Chefs.find(id, (chef) => {
 
-    const foundRecipe = data.recipes.find((recipe) => { return recipe.id == id })
-
-    if (!foundRecipe)
-        return res.send('Receita not Found')
-
-    return res.render('area-general/chef/chef', { recipe: foundRecipe })
+        return res.render('area-general/chefs/chef', { chef })
+    })
 }

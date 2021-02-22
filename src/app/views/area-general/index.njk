@@ -14,15 +14,15 @@
         <div id="title-acessed">
             <h1>Mais acessadas</h1>
         </div>
-        <section class="more-acessed-cards">
+        <section  class="more-acessed-cards">
             {% for recipe in recipes %}
-                <div class="revenue-card">
+                <div class="revenue-card grid" id="{{recipe.id}}">
                     <div class="img-card">
                         <img src="{{recipe.image}}" alt="imagem de {{recipe.image}}">
                     </div>
                     <div class="info-card">
                         <h1>{{recipe.title}}</h1>
-                        <p>{{recipe.author}}</p>
+                        <p>por {{recipe.chef_name}}</p>
                     </div>
 
                 </div>

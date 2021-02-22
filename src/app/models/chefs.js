@@ -4,18 +4,18 @@ const { age, date, graduation } = require('../../lib/utils')
 module.exports = {
     all(callback) {
 
-        //const query = `
-        //    SELECT chefs.*, COUNT (recipes) AS total_recipes
-        //    FROM chefs
-        //    LEFT JOIN recipes ON (recipes.chef_id = chefs.id)
-        //    GROUP BY chefs.id ORDER BY total_recipes DESC
-        //    `
-
         const query = `
-            SELECT chefs.*
+            SELECT chefs.*, COUNT (recipes) AS total_recipes
             FROM chefs
-            ORDER BY name ASC
+            LEFT JOIN recipes ON (recipes.chef_id = chefs.id)
+            GROUP BY chefs.id ORDER BY total_recipes DESC
             `
+
+        //const query = `
+        //    SELECT chefs.*
+        //    FROM chefs
+        //    ORDER BY name ASC
+        //    `
         db.query(query, (err, results) => {
             if (err) throw `Database eroor = ${err}`
 

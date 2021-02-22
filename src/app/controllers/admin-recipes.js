@@ -1,5 +1,3 @@
-const fs = require('fs')
-const data = require('../../../data.json')
 const Recipe = require('../models/recipes')
 
 exports.index = function(req, res) {
