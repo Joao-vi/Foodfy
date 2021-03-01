@@ -1,3 +1,4 @@
+const { grade } = require('./utils')
 module.exports = {
     date: function(timestamp) {
         const date = new Date(timestamp)
