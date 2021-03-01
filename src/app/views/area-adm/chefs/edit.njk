@@ -13,7 +13,11 @@
             <h1>Editando chef</h1>
         </div>
         <div>
-            <button form="form-delete" type="submit">Deletar</button>
+            <button 
+                {% if chef.total_recipes != "0" %}
+                    onclick="alertChef()"
+                {% endif %}
+                form="form-delete" type="submit">Deletar</button>
             <button form="form-put" type="submit">Salvar chef</button>
         </div>
     </div>

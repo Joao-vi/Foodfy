@@ -45,9 +45,15 @@ exports.put = function(req, res) {
 }
 exports.delete = function(req, res) {
     const { id } = req.body
+    Chefs.find(id, (chef) => {
+        if (chef.total_recipes == 0) {
+            Chefs.delete(id, () => {
 
-    Chefs.delete(id, () => {
-
-        return res.redirect(`/admin/chefs`)
+                return res.redirect(`/admin/chefs`)
+            })
+        } else {
+            return res.render('area-adm/chefs/edit', { chef })
+        }
     })
+
 }

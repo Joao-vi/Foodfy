@@ -19,15 +19,44 @@ a {
     display: flex;
 }
 
-.content header div {
+.content header .menu {
     margin-left: 105px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+    align-items: center;
+}
+
+.content .menu form {
+    justify-self: right;
+}
+
+.content .menu form button,
+.content .menu form input {
+    background: #FFFFFF;
+    border: 1px solid #DDDDDD;
+    border-radius: 4px;
+    border-radius: 4px;
+    height: 37px;
+    padding-left: 15px;
+    font-family: Roboto-Regular;
+    font-size: 14px;
+    color: #999999;
+}
+
+.content .menu form button {
+    background: #6558C3;
+    padding: 0 20px;
+    font-family: Roboto-Bold;
+    font-size: 16px;
+    color: #FFFFFF;
 }
 
 .content header img {
     cursor: pointer;
 }
 
-.content header div a {
+.content .menu div a {
     font-family: Roboto-Regular;
     font-size: 16px;
     margin: 0 16px;

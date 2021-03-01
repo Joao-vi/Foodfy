@@ -12,9 +12,16 @@ exports.about = function(req, res) {
 
 
 exports.showAll = function(req, res) {
-    Recipe.all((recipes) => {
-        return res.render('area-general/recipes/recipes', { recipes })
-    })
+    const { filter } = req.query
+
+    const params = {
+        filter,
+        callback(recipes) {
+            return res.render('area-general/recipes/recipes', { recipes, filter })
+        }
+    }
+    Recipe.filtered(params)
+
 }
 exports.show = function(req, res) {
     const { id } = req.params

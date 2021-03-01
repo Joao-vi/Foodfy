@@ -25,13 +25,18 @@
     <div class="content">
         <header>
             <img src="/assets/logo.png" alt="Logo" onClick=return_index()>
-                <div>
+            <div class="menu">
+                <div >
                     {% block header%}
                         <a href="/about">Sobre</a>
                         <a href="/recipes">Receitas</a>
                         <a href="/chefs">Chefes</a>
                     {% endblock %}
                 </div>
+                {% block filter %}
+                {% endblock %}
+            </div>
+              
         </header>
         {% block content %}
         {% endblock %}

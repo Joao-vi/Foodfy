@@ -4,7 +4,7 @@ const { date } = require('../../lib/utils')
 module.exports = {
     all(callback) {
 
-        const query = `
+        let query = `
             SELECT recipes.*, chefs.name AS chef_name 
             FROM recipes 
             LEFT JOIN chefs ON (recipes.chef_id = chefs.id)
@@ -101,32 +101,24 @@ module.exports = {
             callback(results.rows)
         })
     },
-    paginate(params) {
-        let { limit, offset, callback, filter } = params
+    filtered(params) {
+        let { callback, filter } = params
 
         let query = ``,
-            filter_query = ``,
-            total_query = `(
-                SELECT COUNT(*) FROM recipes
-            ) AS total`
+            filter_query = ``
+
 
         if (filter) {
             filter_query = `
-                WHERE recipes.name ILIKE '%${filter}%'
-                OR recipes.email ILIKE '%${filter}%'
+                WHERE recipes.title ILIKE '%${filter}%'
             `
-            total_query = `(
-                SELECT COUNT(*) FROM recipes
-                ${filter_query}
-            ) AS total
-                `
         }
         query = `
-            SELECT recipes.*, ${total_query}
+            SELECT recipes.*, chefs.name AS chef_name 
             FROM recipes
+            LEFT JOIN chefs ON (recipes.chef_id = chefs.id)
             ${filter_query}
-            ORDER BY recipes.name   DESC
-            LIMIT ${limit} OFFSET ${offset}
+            ORDER BY recipes.title ASC
         `
 
         db.query(query, (err, results) => {

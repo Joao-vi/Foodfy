@@ -90,3 +90,10 @@ function removeChild(child) {
         if (parentDiv.childElementCount > 1)
             parentDiv.removeChild(parentDiv.childNodes[index])
 }*/
+
+
+
+/*----- Alert delete chef -----*/
+function alertChef() {
+    alert("Atenção! Chefs com recitas não podem ser deletados!")
+}

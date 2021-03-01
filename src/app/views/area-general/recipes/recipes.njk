@@ -5,6 +5,17 @@
    
     <title>Receitas</title>
 {% endblock%}
+{% block filter %}
+    <form action="/recipes" method="GET">
+        <input 
+            type="text"
+            name="filter"
+            placeholder="Buscar uma receita"
+            value="{{filter}}"
+            >
+        <button type="submit"> Buscar </button>
+    </form>
+{% endblock%}
 {% block content %}
         <section id="revenue" class="more-acessed-cards">
                 {% for recipe in recipes %}

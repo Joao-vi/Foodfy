@@ -3,6 +3,17 @@
     <link rel="stylesheet" href="/index.css">
     <link rel="stylesheet" href="/section.css">
 {% endblock%}
+{% block filter %}
+    <form action="/recipes" method="GET">
+        <input 
+            type="text"
+            name="filter"
+            placeholder="Buscar uma receita"
+            value="{{filter}}"
+            >
+        <button type="submit"> Buscar </button>
+    </form>
+{% endblock%}
 {% block content %}
         <div class="banner">
             <div class="title-banner">
