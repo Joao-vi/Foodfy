@@ -2,9 +2,10 @@ const fs = require('fs')
 const Recipe = require('../models/recipes')
 
 exports.index = function(req, res) {
-    Recipe.all((recipes) => {
-        return res.render('area-general/index', { recipes })
-    })
+    //Recipe.all((recipes) => {
+    //return res.render('area-general/index', { recipes })
+    return res.render('area-general/index')
+        //  })
 }
 exports.about = function(req, res) {
     return res.render('area-general/about')
@@ -12,6 +13,7 @@ exports.about = function(req, res) {
 
 
 exports.showAll = function(req, res) {
+    return res.render('area-general/recipes/recipes')
     const { filter } = req.query
 
     const params = {
@@ -26,6 +28,7 @@ exports.showAll = function(req, res) {
 exports.show = function(req, res) {
     const { id } = req.params
 
+    return res.render('area-general/recipes/recipe')
     Recipe.find(id, (recipe) => {
         return res.render('area-general/recipes/recipe', { recipe })
     })

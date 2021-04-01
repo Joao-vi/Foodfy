@@ -1,3 +1,4 @@
+const currentPage = location.pathname
 const cards = document.querySelectorAll('.revenue-card')
 const hides = [document.querySelector('.hide_1'), document.querySelector('.hide_2'), document.querySelector('.hide_3')]
 const info = [document.querySelector('#tohide_1'), document.querySelector('#tohide_2'), document.querySelector('#tohide_3')]
@@ -96,4 +97,27 @@ function removeChild(child) {
 /*----- Alert delete chef -----*/
 function alertChef() {
     alert("Atenção! Chefs com recitas não podem ser deletados!")
+}
+
+/*----- header black -----*/
+
+const _header = document.querySelector(".header")
+const logo = document.querySelector(".header img")
+const Header = _header.parentNode
+
+if (currentPage.includes("admin")) {
+    Header.classList.add("admin")
+    logo.src = "/assets/white-logo.png"
+}
+
+const UploadPhoto = {
+    name_field: document.querySelector('.input-layout.avatar p'),
+
+    AvatarChef(event) {
+        const { files: fileList } = event.target
+        const div = UploadPhoto.name_field.parentNode
+        console.log(div)
+        UploadPhoto.name_field.innerHTML = fileList[0].name
+        div.style.display = "flex"
+    }
 }

@@ -1,8 +1,5 @@
 {% extends "../../layout.njk" %} 
-{% block head %}
-<link rel="stylesheet" href="/fields.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-{% endblock %}
+
 {% block header%}
         <a href="/admin/recipes">Receitas</a>
         <a href="/admin/chefs">Chefs</a>
@@ -16,7 +13,7 @@
             <button type="submit" form="create-recipe">Salvar chef</button>
         </div>
     </div>
-    <form id="create-recipe" method="POST" action="/admin/chefs">
+    <form id="create-recipe" method="POST" action="/admin/chefs" enctype="multipart/form-data">
         {%include 'area-adm/chefs/fields.njk'%}
     </form>
     <script>

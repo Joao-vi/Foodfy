@@ -1,6 +1,5 @@
 {% extends "../../layout.njk" %} 
 {% block head %}
-<link rel="stylesheet" href="/fields.css">
 <link rel="stylesheet" href="/recipe.css">
 {% endblock %}
 {% block header%}
@@ -21,7 +20,7 @@
             <button form="form-put" type="submit">Salvar chef</button>
         </div>
     </div>
-    <form id="form-put" action="/admin/chefs?_method=PUT" method="POST">
+    <form id="form-put" action="/admin/chefs?_method=PUT" method="POST" enctype="multipart/form-data">
         <input 
             type="hidden"
             name="id"

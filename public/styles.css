@@ -1,0 +1,322 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;700&display=swap');
+:root {
+    --primary-color: #6558C3;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style-type: none;
+    border: none;
+}
+
+html,
+body {
+    min-height: 100vh;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f9f9f9;
+    display: flex;
+    flex-direction: column;
+}
+
+a {
+    text-decoration: none;
+    font-family: Roboto-Regular;
+    font-size: 16px;
+    color: #111111;
+    margin: 0;
+}
+
+.content {
+    height: 100%;
+    width: 70%;
+    margin: 20px auto 0 auto;
+}
+
+.admin {
+    background-color: black;
+}
+
+.admin .header .menu a {
+    color: white;
+}
+
+header .header {
+    margin: 36px auto 0 auto;
+    padding-bottom: 20px;
+    width: 70%;
+    display: flex;
+    align-items: center;
+}
+
+header .header .menu {
+    margin-left: 105px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+    height: 37px;
+    align-items: center;
+}
+
+.header form {
+    justify-self: right;
+}
+
+.header form button,
+.header form input {
+    background: #FFFFFF;
+    border: 1px solid #DDDDDD;
+    border-radius: 4px;
+    border-radius: 4px;
+    height: 37px;
+    padding-left: 15px;
+    font-family: Roboto-Regular;
+    font-size: 14px;
+    color: #999999;
+}
+
+.menu form button {
+    background: var(--primary-color);
+    padding: 0 20px;
+    font-family: Roboto-Bold;
+    font-size: 16px;
+    color: #FFFFFF;
+}
+
+header img {
+    cursor: pointer;
+}
+
+.menu div a {
+    font-family: Roboto-Regular;
+    font-size: 16px;
+    margin: 0 16px;
+    color: #111111;
+}
+
+footer {
+    margin-top: auto;
+    margin-bottom: 0;
+    background: #EEEEEE;
+    width: 100%;
+    padding: 32px 0;
+    text-align: center;
+}
+
+footer p {
+    font-size: 14px;
+    color: #999999;
+}
+
+
+/*---------- banner ---------*/
+
+.banner {
+    background-color: #FBDFDB;
+    height: 366px;
+    border-radius: 20px;
+    margin-top: 26px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.banner .title-banner {
+    margin: auto 100px;
+    width: 316px;
+}
+
+.banner .title-banner h1 {
+    font-family: Roboto-Bold;
+    font-size: 32px;
+}
+
+.banner .title-banner p {
+    margin-top: 10px;
+    font-size: 18px;
+    line-height: 28px;
+    opacity: 0.7;
+}
+
+.banner img {
+    height: 300px;
+    margin: auto 150px 0px auto;
+}
+
+#title-acessed h1 {
+    margin-top: 50px;
+    margin-bottom: 10px;
+    font-family: Roboto-Bold;
+    font-size: 24px;
+    color: #111111;
+}
+
+
+/*---------- about  ---------*/
+
+.history {
+    margin-top: 50px;
+}
+
+.history h1 {
+    margin-top: 30px;
+    font-family: Roboto-Bold;
+    font-size: 24px;
+    color: #111111;
+}
+
+.initial-title h1 {
+    margin: 0;
+}
+
+.history p {
+    margin-top: 20px;
+    font-family: Roboto-Regular;
+    font-size: 18px;
+    color: #444444;
+    line-height: 28px;
+}
+
+
+/*---------- fields ---------*/
+
+.detail-admin {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.detail-admin button {
+    background: var(--primary-color) 100%;
+    padding: 6px 15px;
+    border-color: transparent;
+    border-radius: 4px;
+    font-family: Roboto-Bold;
+    font-size: 16px;
+    color: #FFFFFF;
+    cursor: pointer;
+}
+
+.item div:first-child {
+    font-family: Roboto-Bold;
+    font-size: 16px;
+    color: #111111;
+    margin-top: 30px;
+}
+
+.item div:first-child h3 {
+    margin: 0px;
+}
+
+.item div:nth-child(2) textarea,
+.item .item-grid,
+.item .input-layout {
+    display: grid;
+    width: 100%;
+    height: 40px;
+    margin: 10px 0px 15px 0px;
+    padding-left: 20px;
+    background: white;
+    border: 1px solid #DDDDDD;
+    border-radius: 4px;
+    border-radius: 4px;
+    font-family: Roboto-Regular;
+    font-size: 16px;
+    color: #111111;
+    align-items: center;
+}
+
+.item .input-layout select,
+.item .input-layout input,
+.item .item-grid input {
+    outline: none;
+    border: 0px;
+    height: 80%;
+}
+
+.item-grid {
+    display: grid;
+    grid-template-columns: 1fr 30px;
+    text-align: center;
+    align-items: center;
+}
+
+.item .item-grid i {
+    margin: 0 auto;
+    cursor: pointer;
+}
+
+.item a {
+    margin-top: 15px;
+    font-family: Roboto-Bold;
+    font-size: 16px;
+    color: var(--primary-color);
+    text-align: right;
+    cursor: pointer;
+}
+
+.item div:nth-child(2) textarea {
+    height: 260px;
+    padding-top: 10px;
+}
+
+.item .input-layout select {
+    margin-right: 20px;
+    color: #999;
+}
+
+.item .input-layout select option:first-child {
+    color: #999;
+}
+
+.item .input-layout select option {
+    font-size: 16px;
+    color: #111;
+}
+
+.item .input-layout {
+    box-sizing: border-box;
+}
+
+
+/*---------- avatar chef ---------*/
+
+.item .input-layout.avatar {
+    display: none;
+    vertical-align: middle;
+}
+
+.item .input-layout.avatar p {}
+
+.item #avatar-chef {
+    margin-top: 10px;
+    position: relative;
+    display: block;
+    overflow: hidden;
+    width: 150px;
+}
+
+.item #avatar-chef p {
+    padding: 8px 16px;
+    font-size: 16px;
+    background-color: var(--primary-color);
+    text-align: center;
+    color: white;
+    border-radius: 4px;
+}
+
+.item #avatar-chef #avatar-input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+}

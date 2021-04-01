@@ -22,25 +22,23 @@ module.exports = {
             callback(results.rows)
         })
     },
-    create(data, callback) {
+    create(data) {
         const query = `
             INSERT INTO chefs (
                 name,
-                avatar_url,
+                file_id,
                 created_at
                 ) VALUES ($1,$2,$3) 
                 RETURNING id
                 `
         const values = [
             data.name,
-            data.avatar_url,
+            data.file_id,
             date(Date.now()).iso
         ]
-        db.query(query, values, (err, results) => {
-            if (err) throw `Database eroor = ${err}`
+        return db.query(query, values)
 
-            callback(results.rows[0])
-        })
+
     },
     find(id, callback) {
         const query = `
