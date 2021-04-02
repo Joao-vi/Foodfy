@@ -16,11 +16,19 @@
     <div>
         <h3>Avatar</h3>
     </div>
-    <div class="input-layout avatar">
-      <p>
-           {{chef.avatar_url}}
-      </p> 
-    </div>
+    {%if file %}
+        <div class="input-layout">
+            <p>
+                {{file.name}}
+            </p> 
+        </div>
+    {%else%}
+        <div class="input-layout avatar">
+            <p>
+                {{file.name}}
+            </p> 
+        </div>
+    {% endif %}
     <div id="avatar-chef">
         <input 
             id="avatar-input"

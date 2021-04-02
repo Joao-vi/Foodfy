@@ -95,9 +95,19 @@ function removeChild(child) {
 
 
 /*----- Alert delete chef -----*/
-function alertChef() {
-    alert("Atenção! Chefs com recitas não podem ser deletados!")
+const formDelete = document.querySelector("#form-delete")
+if (formDelete) {
+    formDelete.addEventListener("submit", function(event) {
+        const total = formDelete.dataset.total_recipes
+        if (total != '0') {
+            alert("Atenção! Chefs com recitas não podem ser deletados!")
+            event.preventDefault()
+        }
+
+    })
 }
+
+function alertChef() {}
 
 /*----- header black -----*/
 
@@ -111,7 +121,7 @@ if (currentPage.includes("admin")) {
 }
 
 const UploadPhoto = {
-    name_field: document.querySelector('.input-layout.avatar p'),
+    name_field: document.querySelector('.input-layout p'),
 
     AvatarChef(event) {
         const { files: fileList } = event.target
