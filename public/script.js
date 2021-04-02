@@ -122,12 +122,119 @@ if (currentPage.includes("admin")) {
 
 const UploadPhoto = {
     name_field: document.querySelector('.input-layout p'),
-
+    input: "",
+    preview: document.querySelector('#photos-recipe-preview'),
+    uploadLimit: 5,
+    files: [],
     AvatarChef(event) {
         const { files: fileList } = event.target
         const div = UploadPhoto.name_field.parentNode
         console.log(div)
         UploadPhoto.name_field.innerHTML = fileList[0].name
         div.style.display = "flex"
+    },
+    handleFileInput(event) {
+        const { files: fileList } = event.target
+        UploadPhoto.input = event.target
+
+        if (UploadPhoto.hasLimit(event))
+            return
+        Array.from(fileList).forEach(file => {
+
+            UploadPhoto.files.push(file)
+            const reader = new FileReader()
+
+            reader.onload = () => {
+                const image = new Image()
+                image.src = String(reader.result)
+
+                const container = UploadPhoto.getContainer(image)
+
+                UploadPhoto.preview.appendChild(container)
+            }
+            reader.readAsDataURL(file)
+        })
+        UploadPhoto.input.files = UploadPhoto.getAllFiles()
+    },
+    hasLimit(event) {
+        const { uploadLimit, input, preview } = UploadPhoto
+        const { files: fileList } = input
+
+
+        const photosContainer = []
+        preview.childNodes.forEach(item => {
+            if (item.classList && item.classList.value == 'photo')
+                photosContainer.push(item)
+        })
+
+        const totalPhotos = fileList.length + photosContainer.length
+        const qtdPhotos = uploadLimit - photosContainer.length
+        if (qtdPhotos == 0) {
+            alert('Você atingiu o limite máximo de fotos')
+            event.preventDefault()
+            return true
+        } else if (fileList.length > uploadLimit) {
+            alert(`Envie no máximo ${uploadLimit} fotos`)
+            event.preventDefault()
+            return true
+        } else if (totalPhotos > uploadLimit) {
+            alert(`Você só pode adicionar mais ${qtdPhotos} foto(s)`)
+            event.preventDefault()
+            return true
+        }
+        return false
+    },
+    getAllFiles() {
+        const dataTransfer = new ClipboardEvent('').clipboardData || new DataTransfer()
+
+        UploadPhoto.files.forEach(file => dataTransfer.items.add(file))
+
+        return dataTransfer.files
+    },
+    getContainer(image) {
+        const container = document.createElement('div')
+
+        container.classList.add('photo')
+
+        container.onclick = UploadPhoto.removePhoto
+
+        container.appendChild(image)
+
+        container.appendChild(this.getRemoveButton())
+        return container
+    },
+    getRemoveButton() {
+        const button = document.createElement('i')
+        button.classList.add('material-icons')
+        button.innerHTML = 'close'
+        return button
+    },
+    removePhoto(event) {
+        const photoDiv = event.target.parentNode
+        const photosArray = Array.from(UploadPhoto.preview.children)
+        const index = photosArray.indexOf(photoDiv)
+
+
+        UploadPhoto.files.splice(index, 1)
+        UploadPhoto.input.files = UploadPhoto.getAllFiles()
+
+
+
+        photoDiv.remove()
+    },
+    removeOldPhoto(event) {
+        const photoContainer = event.target.parentNode
+
+        if (photoContainer.id) {
+            const removedFiles = document.querySelector('input[name="removed_files"]')
+            console.log("========================================================")
+            console.log(removedFiles)
+            console.log("========================================================")
+            if (removedFiles) {
+                removedFiles.value += `${photoContainer.id},`
+            }
+        }
+
+        photoContainer.remove()
     }
 }
