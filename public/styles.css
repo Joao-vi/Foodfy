@@ -324,6 +324,7 @@ footer p {
 
 .item div#photos-container {
     display: flex;
+    margin-top: 10px;
 }
 
 .item div.photos-recipe {

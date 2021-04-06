@@ -13,7 +13,7 @@
             <button type="submit" form="create-recipe">Salvar receita</button>
         </div>
     </div>
-    <form id="create-recipe" method="POST" action="/admin/recipes">
+    <form id="create-recipe" method="POST" action="/admin/recipes" enctype="multipart/form-data">
         {%include 'area-adm/recipes/fields.njk'%}
     </form>
     <script>

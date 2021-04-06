@@ -2,35 +2,34 @@ const db = require('../../config/db')
 const { date } = require('../../lib/utils')
 
 module.exports = {
-    all(callback) {
+    all() {
 
         let query = `
             SELECT recipes.*, chefs.name AS chef_name 
             FROM recipes 
             LEFT JOIN chefs ON (recipes.chef_id = chefs.id)
             ORDER BY title ASC`
-        db.query(query, (err, results) => {
-            if (err) throw `Database error = ${err}`
 
-            callback(results.rows)
-        })
+        try {
+            return db.query(query)
+        } catch (err) {
+            console.error(err)
+        }
     },
-    create(data, callback) {
+    create(data) {
         const query = `
             INSERT INTO recipes (
                 chef_id,
-                image,
                 title,
                 ingredients,
                 preparation,
                 information,
                 created_at
-                ) VALUES ($1,$2,$3,$4,$5, $6, $7) 
+                ) VALUES ($1,$2,$3,$4,$5, $6) 
                 RETURNING id
                 `
         const values = [
             data.chef,
-            data.image,
             data.title,
             data.ingredients,
             data.preparation,
@@ -38,24 +37,24 @@ module.exports = {
             date(Date.now()).iso
 
         ]
-        db.query(query, values, (err, results) => {
-            if (err) throw `Database error = ${err}`
-
-            callback(results.rows[0])
-        })
+        try {
+            return db.query(query, values)
+        } catch (err) {
+            console.error(err)
+        }
     },
-    find(id, callback) {
+    find(id) {
         const query = `
             SELECT recipes.*, chefs.name AS chef_name 
             FROM recipes 
             LEFT JOIN chefs ON (recipes.chef_id = chefs.id)
             WHERE recipes.id IN (${id})
             `
-        db.query(query, (err, results) => {
-            if (err) throw `Database error = ${err}`
-
-            callback(results.rows[0])
-        })
+        try {
+            return db.query(query)
+        } catch (err) {
+            console.error(err)
+        }
     },
     update(data, callback) {
         const query = `
@@ -93,13 +92,15 @@ module.exports = {
             callback()
         })
     },
-    chefsSelectedOptions(callback) {
+    chefsSelectedOptions() {
         const query = `SELECT name, id FROM chefs ORDER BY name ASC`
-        db.query(query, (err, results) => {
-            if (err) throw `Database error = ${err}`
 
-            callback(results.rows)
-        })
+        try {
+
+            return db.query(query)
+        } catch (err) {
+            console.error(err)
+        }
     },
     filtered(params) {
         let { callback, filter } = params
