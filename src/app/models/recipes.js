@@ -56,21 +56,19 @@ module.exports = {
             console.error(err)
         }
     },
-    update(data, callback) {
+    update(data) {
         const query = `
         UPDATE recipes SET
             chef_id = $1,
-            image= $2,
-            title= $3,
-            ingredients= $4,
-            preparation= $5,
-            information= $6
+            title= $2,
+            ingredients= $3,
+            preparation= $4,
+            information= $5
 
-        WHERE id = $7
+        WHERE id = $6
         `
         const values = [
             data.chef,
-            data.image,
             data.title,
             data.ingredients,
             data.preparation,
@@ -78,11 +76,12 @@ module.exports = {
             data.id
 
         ]
-        db.query(query, values, (err, results) => {
-            if (err) throw `Database error = ${err}`
+        try {
 
-            callback()
-        })
+            return db.query(query, values)
+        } catch (err) {
+            console.error(err)
+        }
     },
     delete(id, callback) {
         const query = `DELETE FROM recipes WHERE id = ${id} `

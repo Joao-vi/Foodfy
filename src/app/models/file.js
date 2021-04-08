@@ -28,6 +28,17 @@ module.exports = {
             console.error(err)
         }
     },
+    findPhotos(files_id) {
+
+        const query = `
+            SELECT * FROM files WHERE id IN (${files_id})
+        `
+        try {
+            return db.query(query)
+        } catch (err) {
+            console.error(err)
+        }
+    },
     async delete(id) {
         try {
             const result = await db.query(`SELECT * FROM files WHERE id=$1`, [id])

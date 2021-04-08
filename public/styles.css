@@ -398,5 +398,9 @@ footer p {
     font-size: 300%;
     cursor: pointer;
     transition: opacity 100ms;
+    opacity: 0;
+}
+
+.item div#photos-container div#photos-recipe-preview .photo:hover i {
     opacity: 1;
 }

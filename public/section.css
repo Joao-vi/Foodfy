@@ -43,6 +43,7 @@
 
 .admin-recipe {
     margin-top: 30px;
+    margin-bottom: 50px;
     grid-template-columns: 1fr 1fr;
     gap: 20px;
 }
