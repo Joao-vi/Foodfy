@@ -10,23 +10,16 @@ module.exports = {
 
         let recipePromise = recipes.map(async(recipe) => ({
             ...recipe,
-            files: await Recipe_files.find(recipe.id)
+            files: await Recipe_files.findFeaturedPhoto(recipe.id)
         }))
         recipes = await Promise.all(recipePromise)
-        for (let recipe of recipes) {
-            if (recipe.files.rows.length > 0)
-                recipe.fileId = recipe.files.rows[0].file_id
-        }
-        recipePromise = recipes.map(async(recipe) => ({
+        recipes = recipes.map(recipe => ({
             ...recipe,
-            file: await Files.find(recipe.fileId)
+            image: `${req.protocol}://${req.headers.host}${recipe.files.rows[0].path.replace('public','')}`
         }))
-        recipes = await Promise.all(recipePromise)
-        for (let recipe of recipes) {
-            if (recipe.files.rows.length > 0)
-                recipe.image = `${req.protocol}://${req.headers.host}${recipe.file.rows[0].path.replace('public','')}`
-        }
-        //console.log(recipes)
+
+
+
         return res.render('area-adm/recipes/index', { recipes })
 
     },
@@ -40,7 +33,12 @@ module.exports = {
     async show(req, res) {
         const { id } = req.params
         let results = await Recipe.find(id)
-        const recipe = results.rows[0]
+        let recipe = results.rows
+        recipe = recipe.map(recipe => ({
+                ...recipe,
+                image: `${req.protocol}://${req.headers.host}${recipe.path.replace('public','')}`
+            }))
+            //console.log(recipe)
         return res.render('area-adm/recipes/recipe', { recipe })
 
     },

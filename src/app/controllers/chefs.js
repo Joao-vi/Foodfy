@@ -1,17 +1,11 @@
 const Chefs = require('../models/chefs')
 
-exports.showAll = function(req, res) {
-    /* Chefs.all((chefs) => {
-         return res.render('area-general/chefs/chefs', { chefs })
-
-     })*/
-    return res.render('area-general/chefs/chefs')
-}
-exports.show = function(req, res) {
-    return res.render('area-general/chefs/chef')
-    const { id } = req.params
-    Chefs.find(id, (chef) => {
-
-        return res.render('area-general/chefs/chef', { chef })
-    })
+exports.showAll = async function(req, res) {
+    const results = await Chefs.all()
+    let chefs = results.rows
+    chefs = chefs.map(chef => ({
+        ...chef,
+        avatar_url: `${req.protocol}://${req.headers.host}${chef.avatar_url.replace('public','')}`
+    }))
+    return res.render('area-general/chefs/chefs', { chefs })
 }

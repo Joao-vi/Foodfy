@@ -45,10 +45,12 @@ module.exports = {
     },
     find(id) {
         const query = `
-            SELECT recipes.*, chefs.name AS chef_name 
-            FROM recipes 
+            SELECT recipes.*, files.path, chefs.name AS chef_name
+            FROM recipes
             LEFT JOIN chefs ON (recipes.chef_id = chefs.id)
-            WHERE recipes.id IN (${id})
+            LEFT JOIN recipe_files ON (recipe_files.recipe_id = recipes.id)
+            LEFT JOIN files ON (recipe_files.file_id = files.id)
+            WHERE recipes.id = ${id}
             `
         try {
             return db.query(query)
@@ -101,8 +103,8 @@ module.exports = {
             console.error(err)
         }
     },
-    filtered(params) {
-        let { callback, filter } = params
+    filtered(filter) {
+
 
         let query = ``,
             filter_query = ``
@@ -114,17 +116,19 @@ module.exports = {
             `
         }
         query = `
-            SELECT recipes.*, chefs.name AS chef_name 
+            SELECT recipes.*, chefs.name AS chef_name, files.path
             FROM recipes
             LEFT JOIN chefs ON (recipes.chef_id = chefs.id)
+            LEFT JOIN recipe_files ON (recipe_files.recipe_id = recipes.id)
+            LEFT JOIN files ON (recipe_files.file_id = files.id)
             ${filter_query}
             ORDER BY recipes.title ASC
         `
+        try {
 
-        db.query(query, (err, results) => {
-            if (err) throw `Database error = ${err}`
-
-            callback(results.rows)
-        })
+            return db.query(query)
+        } catch (err) {
+            console.error(err)
+        }
     }
 }

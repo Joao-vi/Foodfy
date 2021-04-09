@@ -8,7 +8,7 @@
 {% block content %}
          <section class="more-acessed-cards admin-chef">
             {% for chef in chefs %}
-                <div class="revenue-card">
+                <div class="revenue-card general_chef" id="{{chef.id}}">
                     <div class="img-card">
                         <img src="{{chef.avatar_url}}" alt="imagem de {{chef.avatar_url}}">
                     </div>

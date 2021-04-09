@@ -26,6 +26,20 @@ module.exports = {
             console.error(err)
         }
     },
+    findFeaturedPhoto(id) {
+        let query = `
+        SELECT * 
+        FROM recipe_files 
+        LEFT JOIN files ON (recipe_files.file_id = files.id)
+        WHERE recipe_files.recipe_id = $1
+        LIMIT 1
+        `
+        try {
+            return db.query(query, [id])
+        } catch (err) {
+            console.error(err)
+        }
+    },
     async delete(id) {
         try {
 

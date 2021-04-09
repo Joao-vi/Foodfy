@@ -27,6 +27,10 @@ module.exports = {
             file.path = `${req.protocol}://${req.headers.host}${file.path.replace('public','')}`
         let recipes = await Chefs.findForDetail(id)
         recipes = recipes.rows
+        recipes = recipes.map(recipe => ({
+            ...recipe,
+            image: `${req.protocol}://${req.headers.host}${recipe.path.replace('public','')}`
+        }))
 
 
         return res.render('area-adm/chefs/chef', { chef, recipes, file })

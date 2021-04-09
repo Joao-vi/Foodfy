@@ -9,15 +9,15 @@
 {% block content %}
     <div class="detail-admin"> 
         <div id="title-acessed">
-            <h1>Receita: {{recipe.title}}</h1>
+            <h1>Receita: {{recipe[0].title}}</h1>
         </div>
-        <button  onclick="window.location.href='/admin/recipes/{{recipe.id}}/edit'" >Editar receita</button>
+        <button  onclick="window.location.href='/admin/recipes/{{recipe[0].id}}/edit'" >Editar receita</button>
     </div>
     <div class="recipe-banner">
-        <img src="{{recipe.image}}" alt="imagem de {{recipe.image}}">
+        <img src="{{recipe[0].image}}" alt="imagem de {{recipe[0].image}}">
         <div class="title-info">
-            <h1>{{recipe.title}}</h1>
-            <p>por {{recipe.chef_name}}</p>
+            <h1>{{recipe[0].title}}</h1>
+            <p>por {{recipe[0].chef_name}}</p>
         </div>
     </div>
     <div  class="ingredientes">
@@ -25,7 +25,7 @@
             <h3>Ingredientes</h3>
         </div>
          <ul id="tohide_1">
-            {% for ingredient in recipe.ingredients %}
+            {% for ingredient in recipe[0].ingredients %}
             <li>{{ingredient}}</li>
             {% endfor %}
         </ul>
@@ -35,7 +35,7 @@
             <h3>Modo de preparo</h3>
         </div>
         <ul id="tohide_2">
-            {% for preparation in recipe.preparation %}
+            {% for preparation in recipe[0].preparation %}
             <li>{{preparation}}</li>
             {% endfor %}
         </ul>
@@ -45,6 +45,6 @@
          <div class="title">
             <h3>Informações adicionais</h3>
         </div>
-        <p id="tohide_3">{{recipe.information}}</p>
+        <p id="tohide_3">{{recipe[0].information}}</p>
     </div>
 {% endblock %}

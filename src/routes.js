@@ -16,7 +16,7 @@ routes.get('/recipes', recipes.showAll)
 routes.get('/recipe/:id', recipes.show)
 
 routes.get('/chefs', chefs.showAll)
-routes.get('/chefs/:id', chefs.show)
+
 
 
 routes.get("/admin/recipes", recipesAdmin.index); // Mostrar a lista de receitas

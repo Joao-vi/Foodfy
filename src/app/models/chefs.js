@@ -141,9 +141,11 @@ module.exports = {
     },
     findForDetail(id) {
         const query = `
-            SELECT  recipes.id, recipes.chef_id,  recipes.title, chefs.name AS chef_name
+            SELECT  recipes.id, recipes.chef_id,  recipes.title, chefs.name AS chef_name,files.path
             FROM recipes 
             LEFT JOIN chefs ON (recipes.chef_id  = chefs.id)
+            LEFT JOIN recipe_files ON (recipe_files.recipe_id = recipes.id)
+            LEFT JOIN files ON (recipe_files.file_id = files.id)
             WHERE recipes.chef_id=${id}
             `
         try {
