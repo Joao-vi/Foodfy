@@ -45,7 +45,7 @@ module.exports = {
     },
     find(id) {
         const query = `
-            SELECT recipes.*, files.path, chefs.name AS chef_name
+            SELECT recipes.*, files.*, chefs.name AS chef_name
             FROM recipes
             LEFT JOIN chefs ON (recipes.chef_id = chefs.id)
             LEFT JOIN recipe_files ON (recipe_files.recipe_id = recipes.id)
@@ -85,13 +85,14 @@ module.exports = {
             console.error(err)
         }
     },
-    delete(id, callback) {
+    delete(id) {
         const query = `DELETE FROM recipes WHERE id = ${id} `
-        db.query(query, (err) => {
-            if (err) throw `Database error = ${err}`
+        try {
 
-            callback()
-        })
+            return db.query(query)
+        } catch (err) {
+            console.error(err)
+        }
     },
     chefsSelectedOptions() {
         const query = `SELECT name, id FROM chefs ORDER BY name ASC`

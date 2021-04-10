@@ -18,7 +18,9 @@ routes.get('/recipe/:id', recipes.show)
 routes.get('/chefs', chefs.showAll)
 
 
-
+routes.get('/admin', (req, res) => {
+    return res.redirect('/admin/recipes')
+})
 routes.get("/admin/recipes", recipesAdmin.index); // Mostrar a lista de receitas
 routes.get("/admin/recipes/create", recipesAdmin.create); // Mostrar formulário de nova receita
 routes.get("/admin/recipes/:id", recipesAdmin.show); // Exibir detalhes de uma receita

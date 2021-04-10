@@ -96,7 +96,7 @@ function removeChild(child) {
 
 
 /*----- Alert delete chef -----*/
-const formDelete = document.querySelector("#form-delete")
+const formDelete = document.querySelector("#form-delete-chef")
 if (formDelete) {
     formDelete.addEventListener("submit", function(event) {
         const total = formDelete.dataset.total_recipes
@@ -237,5 +237,19 @@ const UploadPhoto = {
         }
 
         photoContainer.remove()
+    }
+}
+
+const ImageGallery = {
+    featured: document.querySelector('.recipe-banner > img'),
+    previews: document.querySelectorAll('.gallery-preview img'),
+    setImage(event) {
+        const { target } = event
+        ImageGallery.previews.forEach(preview => { preview.classList.remove('active') })
+
+        target.classList.add('active')
+
+        ImageGallery.featured.src = target.src
+
     }
 }

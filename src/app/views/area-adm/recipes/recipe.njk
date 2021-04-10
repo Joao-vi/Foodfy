@@ -1,7 +1,5 @@
 {% extends "../../layout.njk" %} 
-{% block head %}
-<link rel="stylesheet" href="/recipe.css">
-{% endblock %}
+
 {% block header%}
         <a href="/admin/recipes">Receitas</a>
         <a href="/admin/chefs">Chefs</a>
@@ -9,15 +7,28 @@
 {% block content %}
     <div class="detail-admin"> 
         <div id="title-acessed">
-            <h1>Receita: {{recipe[0].title}}</h1>
+            <h1>Receita: {{recipe.title}}</h1>
         </div>
-        <button  onclick="window.location.href='/admin/recipes/{{recipe[0].id}}/edit'" >Editar receita</button>
+        <button  onclick="window.location.href='/admin/recipes/{{id}}/edit'" >Editar receita</button>
     </div>
     <div class="recipe-banner">
-        <img src="{{recipe[0].image}}" alt="imagem de {{recipe[0].image}}">
+        <img src="{{files[0].src}}" alt="imagem de {{files[0].name}}">
+        
+        <div class="gallery-preview">
+            {% for image in files %}
+                <img 
+                    src="{{image.src}}" 
+                    alt="{{image.name}}"
+                    {% if loop.index0 == 0%}
+                        class="active"
+                    {% endif %}
+                    onclick="ImageGallery.setImage(event)"
+                    >
+            {% endfor %}
+        </div>
         <div class="title-info">
-            <h1>{{recipe[0].title}}</h1>
-            <p>por {{recipe[0].chef_name}}</p>
+            <h1>{{recipe.title}}</h1>
+            <p>por {{recipe.chef_name}}</p>
         </div>
     </div>
     <div  class="ingredientes">
@@ -25,7 +36,7 @@
             <h3>Ingredientes</h3>
         </div>
          <ul id="tohide_1">
-            {% for ingredient in recipe[0].ingredients %}
+            {% for ingredient in recipe.ingredients %}
             <li>{{ingredient}}</li>
             {% endfor %}
         </ul>
@@ -35,7 +46,7 @@
             <h3>Modo de preparo</h3>
         </div>
         <ul id="tohide_2">
-            {% for preparation in recipe[0].preparation %}
+            {% for preparation in recipe.preparation %}
             <li>{{preparation}}</li>
             {% endfor %}
         </ul>
@@ -45,6 +56,6 @@
          <div class="title">
             <h3>Informações adicionais</h3>
         </div>
-        <p id="tohide_3">{{recipe[0].information}}</p>
+        <p id="tohide_3">{{recipe.information}}</p>
     </div>
 {% endblock %}

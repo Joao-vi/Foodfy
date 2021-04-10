@@ -1,7 +1,5 @@
 {% extends "../../layout.njk" %} 
-{% block head %}
-<link rel="stylesheet" href="/recipe.css">
-{% endblock %}
+
 {% block header%}
         <a href="/admin/recipes">Receitas</a>
         <a href="/admin/chefs">Chefs</a>
@@ -12,7 +10,7 @@
             <h1>Editando chef</h1>
         </div>
         <div>
-            <button form="form-delete" type="submit">Deletar</button>
+            <button form="form-delete-chef" type="submit">Deletar</button>
             <button form="form-put" type="submit">Salvar chef</button>
         </div>
     </div>
@@ -27,7 +25,7 @@
             value = "{{chef.file_id}}">
         {%include 'area-adm/chefs/fields.njk'%}
     </form>
-    <form id="form-delete" action="/admin/chefs?_method=DELETE" method="POST" data-total_recipes = {{chef.total_recipes}}>
+    <form id="form-delete-chef" action="/admin/chefs?_method=DELETE" method="POST" data-total_recipes = {{chef.total_recipes}}>
         <input 
             type="hidden"
             name="id"

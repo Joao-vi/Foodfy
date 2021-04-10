@@ -43,10 +43,13 @@ module.exports = {
 
         let results = await Recipe.find(id)
         let recipe = results.rows[0]
+        let files = results.rows.map(file => ({
+            ...file,
+            src: `${req.protocol}://${req.headers.host}${file.path.replace('public','')}`
+        }))
 
-        recipe.image = `${req.protocol}://${req.headers.host}${recipe.path.replace('public','')}`
 
-        return res.render('area-general/recipes/recipe', { recipe })
+        return res.render('area-general/recipes/recipe', { recipe, files })
 
 
     }

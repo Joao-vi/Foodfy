@@ -8,7 +8,7 @@
     padding: 0;
     box-sizing: border-box;
     text-decoration: none;
-    list-style-type: none;
+    list-style-type: '- ';
     border: none;
 }
 
@@ -35,7 +35,7 @@ a {
 .content {
     height: 100%;
     width: 70%;
-    margin: 20px auto 0 auto;
+    margin: 50px auto 0 auto;
 }
 
 .admin {
@@ -147,9 +147,16 @@ footer p {
     margin: auto 150px 0px auto;
 }
 
-#title-acessed h1 {
+#title-acessed.title-admin {
+    margin-top: 0;
+}
+
+#title-acessed {
+    margin-bottom: 20px;
     margin-top: 50px;
-    margin-bottom: 10px;
+}
+
+#title-acessed h1 {
     font-family: Roboto-Bold;
     font-size: 24px;
     color: #111111;
@@ -179,6 +186,272 @@ footer p {
     font-size: 18px;
     color: #444444;
     line-height: 28px;
+}
+
+
+/*---------- recipe ---------*/
+
+.recipe-banner img {
+    width: 100%;
+    height: 280px;
+    border-radius: 20px;
+}
+
+.title-info {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.title-info h1 {
+    font-family: Roboto-Bold;
+    font-size: 36px;
+    color: #111111;
+}
+
+.title-info p {
+    font-family: Roboto-Regular;
+    font-size: 20px;
+    color: #777777;
+    margin-top: 4px;
+}
+
+.ingredientes {
+    margin-top: 30px;
+}
+
+.ingredientes ul,
+.modo-de-preparo ul,
+.informacoes p {
+    margin-top: 20px;
+}
+
+.ingredientes ul li,
+.modo-de-preparo ul li {
+    margin-bottom: 5px;
+}
+
+#tohide_1,
+#tohide_2,
+#tohide_3 {
+    visibility: visible;
+    margin-bottom: 50px;
+}
+
+#tohide_1.hidden,
+#tohide_2.hidden,
+#tohide_3.hidden {
+    visibility: hidden;
+    margin-bottom: 0px;
+    height: 0;
+}
+
+.title {
+    align-items: center;
+    display: flex;
+}
+
+.title h3 {
+    font-family: Roboto-Bold;
+    font-size: 24px;
+    color: #111111;
+}
+
+.title p {
+    margin-left: 8px;
+    font-family: Roboto-Regular;
+    font-size: 18px;
+    color: #444444;
+    line-height: 28px;
+    cursor: pointer;
+}
+
+.detail-admin {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.detail-admin button {
+    background: #6558C3 100%;
+    padding: 6px 15px;
+    border-color: transparent;
+    border-radius: 4px;
+    font-family: Roboto-Bold;
+    font-size: 16px;
+    color: #FFFFFF;
+    cursor: pointer;
+}
+
+.detail-admin button:first-child {
+    background: #DC4747 100%;
+    margin-right: 10px;
+}
+
+.detail-admin .create button {
+    background: #6558C3 100%;
+}
+
+
+/*--------- chef-detail ---------*/
+
+.chef-avatar {
+    text-align: center;
+}
+
+.chef-avatar img {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+}
+
+.chef-avatar .title-info {
+    margin-top: 30px;
+}
+
+.chef-avatar .title-info h1 {
+    margin: 0px;
+}
+
+#chef-recipe {
+    margin: 0px;
+    font-family: Roboto-Bold;
+    font-size: 24px;
+    color: #111111;
+    margin-top: 50px;
+}
+
+
+/*---------- more acessed cards ---------*/
+
+.more-acessed-cards {
+    max-width: 100%;
+    margin: 0 auto 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 30px 20px;
+    margin-bottom: 50px;
+}
+
+.revenue-card.grid {
+    cursor: pointer;
+}
+
+.img-card img {
+    width: 100%;
+    height: 150px;
+    border-radius: 15px;
+}
+
+.info-card {
+    margin-top: 20px;
+}
+
+.info-card h1 {
+    font-family: Roboto-Regular;
+    font-size: 18px;
+    color: #111111;
+}
+
+.info-card p {
+    margin-top: 5px;
+    font-family: Roboto-Regular;
+    font-size: 14px;
+    color: #777777;
+}
+
+
+/*---------- área adm recipes----------*/
+
+.admin-recipe {
+    margin-top: 30px;
+    margin-bottom: 50px;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.admin-recipe .revenue-card {
+    display: grid;
+    grid-template-columns: 172px 1fr;
+}
+
+.admin-recipe .img-card img {
+    width: 172px;
+    height: 80px;
+    margin-top: 0px;
+    border-radius: 10px;
+}
+
+.admin-recipe .info-card {
+    margin-top: 0px;
+    margin-left: 20px;
+}
+
+.admin-recipe .info-card h1 {
+    line-height: 21px;
+    margin: 0px;
+}
+
+.admin-recipe .info-card p {
+    margin: 5px 0px 10px 0px;
+    line-height: 16px;
+}
+
+.admin-recipe .info-card a {
+    font-family: Roboto-Bold;
+    font-size: 14px;
+    color: #6558C3;
+    line-height: 16px;
+}
+
+
+/*---------- área adm recipes----------*/
+
+.admin-chef {
+    margin-top: 30px;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 20px;
+}
+
+.admin-chef .revenue-card {
+    display: grid;
+    grid-template-columns: 64px 1fr;
+    box-sizing: border-box;
+    border: 1px solid #eee;
+    border-radius: 15px;
+    padding: 5px;
+}
+
+.admin-chef .img-card {
+    display: block;
+    width: 64px;
+    height: 64px;
+    align-self: center;
+}
+
+.admin-chef .img-card img {
+    width: 64px;
+    height: 64px;
+    margin-top: 0px;
+    border-radius: 50%;
+}
+
+.admin-chef .info-card {
+    margin-top: 0px;
+    margin-left: 20px;
+    display: block;
+}
+
+.admin-chef .info-card h1 {
+    line-height: 21px;
+    margin: 0px;
+    margin-bottom: 10px;
+}
+
+.admin-chef .info-card a {
+    font-family: Roboto-Bold;
+    font-size: 14px;
+    color: #6558C3;
+    line-height: 16px;
 }
 
 
@@ -402,5 +675,32 @@ footer p {
 }
 
 .item div#photos-container div#photos-recipe-preview .photo:hover i {
+    opacity: 1;
+}
+
+
+/*----- galery preview -----*/
+
+.recipe-banner .gallery-preview {
+    display: flex;
+    margin-top: 8px;
+    justify-content: flex-end;
+}
+
+.recipe-banner .gallery-preview img {
+    border: 1px solid #DDDDDD;
+    margin-top: 0;
+    margin-left: 10px;
+    height: 50px;
+    width: 50px;
+    object-fit: cover;
+    opacity: 0.6;
+    cursor: pointer;
+    transition: 100ms;
+    border-radius: 4px;
+}
+
+.recipe-banner .gallery-preview img:hover,
+.recipe-banner .gallery-preview img.active {
     opacity: 1;
 }

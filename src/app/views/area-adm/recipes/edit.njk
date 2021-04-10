@@ -1,7 +1,5 @@
 {% extends "../../layout.njk" %} 
-{% block head %}
-<link rel="stylesheet" href="/recipe.css">
-{% endblock %}
+
 {% block header%}
         <a href="/admin/recipes">Receitas</a>
         <a href="/admin/chefs">Chefs</a>
@@ -20,13 +18,13 @@
         <input 
             type="hidden"
             name="id"
-            value = "{{recipe.id}}">
+            value = "{{id}}">
         {%include 'area-adm/recipes/fields.njk'%}
     </form>
     <form id="form-delete" action="/admin/recipes?_method=DELETE" method="POST">
         <input 
             type="hidden"
             name="id"
-            value = "{{recipe.id}}">
+            value = "{{id}}">
     </form>
 {% endblock %}

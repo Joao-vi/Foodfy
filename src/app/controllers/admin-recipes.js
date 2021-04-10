@@ -33,13 +33,15 @@ module.exports = {
     async show(req, res) {
         const { id } = req.params
         let results = await Recipe.find(id)
-        let recipe = results.rows
-        recipe = recipe.map(recipe => ({
-                ...recipe,
-                image: `${req.protocol}://${req.headers.host}${recipe.path.replace('public','')}`
+
+        let recipe = results.rows[0]
+
+        let files = results.rows.map(file => ({
+                ...file,
+                src: `${req.protocol}://${req.headers.host}${file.path.replace('public','')}`
             }))
             //console.log(recipe)
-        return res.render('area-adm/recipes/recipe', { recipe })
+        return res.render('area-adm/recipes/recipe', { id, recipe, files })
 
     },
     async edit(req, res) {
@@ -49,9 +51,9 @@ module.exports = {
 
         results = await Recipe.chefsSelectedOptions()
         const chefOptions = results.rows
-
         results = await Recipe_files.find(id)
         let recipeFiles = results.rows
+
         recipeFiles = recipeFiles.map(file => file.file_id)
         recipeFiles = Object.values(recipeFiles)
         results = await Files.findPhotos(recipeFiles)
@@ -62,7 +64,7 @@ module.exports = {
             src: `${req.protocol}://${req.headers.host}${file.path.replace('public','')}`
         }))
 
-        return res.render('area-adm/recipes/edit', { recipe, chefOptions, files })
+        return res.render('area-adm/recipes/edit', { recipe, chefOptions, files, id })
 
     },
     async post(req, res) {
@@ -122,12 +124,20 @@ module.exports = {
         return res.redirect(`/admin/recipes/${req.body.id}`)
 
     },
-    delete(req, res) {
+    async delete(req, res) {
         const { id } = req.body
+        let results = await Recipe_files.find(id)
+        let filesId = results.rows.map(file => file.file_id)
+        filesId = Object.values(filesId)
+        console.log(filesId)
+        const removedRecipeFilePromise = filesId.map(id => Recipe_files.delete(id))
+        await Promise.all(removedRecipeFilePromise)
 
+        const removedFilesPromise = filesId.map(id => Files.delete(id))
+        await Promise.all(removedFilesPromise)
+
+        await Recipe.delete(id)
         return res.redirect(`/admin/recipes`)
-        Recipe.delete(id, () => {
-            return res.redirect(`/admin/recipes`)
-        })
+
     }
 }
