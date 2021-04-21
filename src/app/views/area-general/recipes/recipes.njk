@@ -15,6 +15,11 @@
     </form>
 {% endblock%}
 {% block content %}
+    {% if filter %}
+    <div id="title">
+        <h1>Buscando por "{{filter}}"</h1>
+    </div>
+    {% endif%}
 <div class="container-pagination">
         <section id="revenue" class="more-acessed-cards">
                 {% for recipe in recipes %}

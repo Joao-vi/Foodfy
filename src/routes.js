@@ -13,9 +13,10 @@ routes.get('/about', recipes.about)
 
 
 routes.get('/recipes', recipes.showAll)
-routes.get('/recipe/:id', recipes.show)
+routes.get('/recipes/:id', recipes.show)
 
 routes.get('/chefs', chefs.showAll)
+routes.get('/chefs/:id', chefs.show)
 
 
 routes.get('/admin', (req, res) => {

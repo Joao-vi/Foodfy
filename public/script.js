@@ -1,5 +1,6 @@
 const currentPage = location.pathname
 const cards = document.querySelectorAll('.revenue-card.grid')
+const cardsChefs = document.querySelectorAll('.revenue-card.general_chef')
 
 const hides = [document.querySelector('.hide_1'), document.querySelector('.hide_2'), document.querySelector('.hide_3')]
 const info = [document.querySelector('#tohide_1'), document.querySelector('#tohide_2'), document.querySelector('#tohide_3')]
@@ -7,10 +8,15 @@ let IngredineteOrPreparation = ''
 for (let card of cards) {
     card.addEventListener('click', () => {
         const Id = card.getAttribute('id')
-        window.location.href = `/recipe/${Id}`
+        window.location.href = `/recipes/${Id}`
     })
 }
-
+for (let card of cardsChefs) {
+    card.addEventListener('click', () => {
+        const Id = card.getAttribute('id')
+        window.location.href = `/chefs/${Id}`
+    })
+}
 for (let i = 0; i < hides.length; i++) {
     if (hides[i]) {
         hides[i].addEventListener('click', () => {

@@ -1,0 +1,21 @@
+{% import "./recipe-cards.njk" as cards %}
+
+{% macro chef_part(path, recipes, chef, file)%}
+<div class="detail-admin"> 
+        <div id="title">
+            <h1>Chef: {{chef.name}}</h1>
+        </div>
+        {% if path%}
+            <button  onclick="window.location.href='/admin/chefs/{{chef.id}}/edit'" >Editar chef</button>
+        {% endif%}
+</div>
+<div class="chef-avatar">
+    <img src="{{file.path}}" alt="imagem de {{file.path}}">
+    <div class="title-info">
+        <h1>{{chef.name}}</h1>
+        <p>{{chef.total_recipes}} receitas</p>
+    </div>
+</div>
+<h3 id="chef-recipe" >Receitas</h3>
+{{cards.list_recipes(path, recipes)}}
+{% endmacro %}

@@ -35,7 +35,7 @@ a {
 .content {
     height: 100%;
     width: 70%;
-    margin: 50px auto 0 auto;
+    margin: 30px auto 0 auto;
 }
 
 .admin {
@@ -44,6 +44,10 @@ a {
 
 .admin .header .menu a {
     color: white;
+}
+
+header {
+    border-bottom: 1px solid rgb(185, 185, 185);
 }
 
 header .header {
@@ -156,7 +160,9 @@ footer p {
     margin-top: 50px;
 }
 
+#title h1,
 #title-acessed h1 {
+    margin-bottom: 20px;
     font-family: Roboto-Bold;
     font-size: 24px;
     color: #111111;
@@ -222,7 +228,7 @@ footer p {
 
 .ingredientes ul,
 .modo-de-preparo ul,
-.informacoes p {
+.informacoes p#tohide_3 {
     margin-top: 20px;
 }
 
@@ -298,6 +304,7 @@ footer p {
 .container-pagination {
     display: grid;
     grid-template-rows: 1fr 16px;
+    margin-bottom: 50px;
 }
 
 .container-pagination .pagination {
@@ -730,4 +737,11 @@ footer p {
 .recipe-banner .gallery-preview img:hover,
 .recipe-banner .gallery-preview img.active {
     opacity: 1;
+}
+
+
+/*---------- chefs detalhe general ----------*/
+
+.admin-chef .revenue-card.general_chef {
+    cursor: pointer;
 }

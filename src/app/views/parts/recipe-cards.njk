@@ -1,3 +1,5 @@
+{% macro list_recipes( path, recipes) %}
+
 <section class="more-acessed-cards admin-recipe">
             {% for recipe in recipes %}
                 <div class="revenue-card">
@@ -7,9 +9,12 @@
                     <div class="info-card">
                         <h1>{{recipe.title}}</h1>
                         <p>por {{recipe.chef_name}}</p>
-                        <a href="/admin/recipes/{{recipe.id}}">Visualizar</a>
+                        <a href="{{path}}/recipes/{{recipe.id}}">Visualizar</a>
                     </div>
 
                 </div>
             {% endfor %}
         </section>
+
+
+        {% endmacro %}
