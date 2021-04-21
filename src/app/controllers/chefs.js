@@ -24,6 +24,12 @@ module.exports = {
             file.path = `${req.protocol}://${req.headers.host}${file.path.replace('public','')}`
         let recipes = await Chefs.findForDetail(id)
         recipes = recipes.rows
+        recipes = recipes.reduce((reduceRecipes, recipe) => {
+            const found = reduceRecipes.some(rec => rec.id == recipe.id)
+            if (!found)
+                reduceRecipes.push(recipe)
+            return reduceRecipes
+        }, [])
         recipes = recipes.map(recipe => ({
             ...recipe,
             image: `${req.protocol}://${req.headers.host}${recipe.path.replace('public','')}`

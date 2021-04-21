@@ -147,6 +147,7 @@ module.exports = {
             LEFT JOIN recipe_files ON (recipe_files.recipe_id = recipes.id)
             LEFT JOIN files ON (recipe_files.file_id = files.id)
             WHERE recipes.chef_id=${id}
+            ORDER BY recipes.created_at DESC
             `
         try {
 

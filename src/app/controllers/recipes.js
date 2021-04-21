@@ -32,6 +32,7 @@ module.exports = {
         let { filter, limit, page } = req.query
         page = page || 1
         limit = limit || 6
+
         let offset = limit * (page - 1),
             pagination
         const params = {
@@ -40,8 +41,15 @@ module.exports = {
             limit,
             offset
         }
-        let results = await Recipe.filtered(params)
+        let results = await Recipe.paginate(params)
         let recipes = results.rows
+
+        const filesPromise = recipes.map(async(recipe) => ({
+            ...recipe,
+            files: await Recipe_files.findFeaturedPhoto(recipe.id)
+        }))
+        recipes = await Promise.all(filesPromise)
+
         if (recipes.length > 0) {
             pagination = {
                 page,
@@ -50,7 +58,7 @@ module.exports = {
         }
         recipes = recipes.map(recipe => ({
             ...recipe,
-            image: `${req.protocol}://${req.headers.host}${recipe.path.replace('public','')}`
+            image: `${req.protocol}://${req.headers.host}${recipe.files.rows[0].path.replace('public','')}`
         }))
 
         return res.render('area-general/recipes/recipes', { recipes, filter, pagination })

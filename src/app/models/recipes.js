@@ -104,11 +104,11 @@ module.exports = {
             console.error(err)
         }
     },
-    filtered(params) {
+    paginate(params) {
         const { filter, limit, offset } = params
 
         let query = ``,
-            filter_query = ``,
+            filter_query = `ORDER BY recipes.created_at DESC`,
             total_query = `(
                 SELECT COUNT(*) FROM recipes
             ) AS total`
@@ -123,15 +123,17 @@ module.exports = {
                 ${filter_query}
             ) AS total
             `
+            filter_query = `
+            WHERE recipes.title ILIKE '%${filter}%'
+            ORDER BY recipes.updated_at DESC
+            `
         }
         query = `
-            SELECT recipes.*, ${total_query}, chefs.name AS chef_name, files.path
+            SELECT recipes.*, ${total_query}, chefs.name AS chef_name
             FROM recipes
             LEFT JOIN chefs ON (recipes.chef_id = chefs.id)
-            LEFT JOIN recipe_files ON (recipe_files.recipe_id = recipes.id)
-            LEFT JOIN files ON (recipe_files.file_id = files.id)
             ${filter_query}
-            ORDER BY recipes.title ASC
+            
             LIMIT ${limit} OFFSET ${offset}
         `
         try {

@@ -9,7 +9,8 @@ module.exports = new Pool({
     logging: true,
     define: {
         timestamps: true
-    }
+    },
+    ssl: { rejectUnauthorized: false }
 
 
 
