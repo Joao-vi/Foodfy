@@ -15,7 +15,11 @@ module.exports = {
         recipes = recipes.map(recipe => ({
             ...recipe,
             image: `${req.protocol}://${req.headers.host}${recipe.files.rows[0].path.replace('public','')}`
-        }))
+        })).reduce((reduceRecipes, recipe) => {
+            if (reduceRecipes.length < 6)
+                reduceRecipes.push(recipe)
+            return reduceRecipes
+        }, [])
 
         return res.render('area-general/index', { recipes })
 
@@ -25,17 +29,31 @@ module.exports = {
     },
     async showAll(req, res) {
 
-        const { filter } = req.query
-
-
-        let results = await Recipe.filtered(filter)
+        let { filter, limit, page } = req.query
+        page = page || 1
+        limit = limit || 6
+        let offset = limit * (page - 1),
+            pagination
+        const params = {
+            filter,
+            page,
+            limit,
+            offset
+        }
+        let results = await Recipe.filtered(params)
         let recipes = results.rows
+        if (recipes.length > 0) {
+            pagination = {
+                page,
+                total: Math.ceil(recipes[0].total / limit)
+            }
+        }
         recipes = recipes.map(recipe => ({
             ...recipe,
             image: `${req.protocol}://${req.headers.host}${recipe.path.replace('public','')}`
         }))
 
-        return res.render('area-general/recipes/recipes', { recipes, filter })
+        return res.render('area-general/recipes/recipes', { recipes, filter, pagination })
 
     },
     async show(req, res) {

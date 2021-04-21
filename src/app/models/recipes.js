@@ -104,26 +104,35 @@ module.exports = {
             console.error(err)
         }
     },
-    filtered(filter) {
-
+    filtered(params) {
+        const { filter, limit, offset } = params
 
         let query = ``,
-            filter_query = ``
+            filter_query = ``,
+            total_query = `(
+                SELECT COUNT(*) FROM recipes
+            ) AS total`
 
 
         if (filter) {
             filter_query = `
                 WHERE recipes.title ILIKE '%${filter}%'
             `
+            total_query = `(
+                SELECT COUNT(*) FROM recipes
+                ${filter_query}
+            ) AS total
+            `
         }
         query = `
-            SELECT recipes.*, chefs.name AS chef_name, files.path
+            SELECT recipes.*, ${total_query}, chefs.name AS chef_name, files.path
             FROM recipes
             LEFT JOIN chefs ON (recipes.chef_id = chefs.id)
             LEFT JOIN recipe_files ON (recipe_files.recipe_id = recipes.id)
             LEFT JOIN files ON (recipe_files.file_id = files.id)
             ${filter_query}
             ORDER BY recipes.title ASC
+            LIMIT ${limit} OFFSET ${offset}
         `
         try {
 
