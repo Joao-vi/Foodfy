@@ -1,4 +1,6 @@
 {% extends "../../layout.njk" %} 
+{% import "../../parts/recipe-cards.njk" as cards %}
+
 {% block head %}
     <link rel="stylesheet" href="/section.css">
 {% endblock%}
@@ -10,5 +12,6 @@
         <div id="title-acessed" class="title-admin">
             <h1>Gerenciar receitas</h1>
         </div>
-         {%include 'area-adm/recipe-cards.njk'%}
+         {{cards.list_recipes("/admin", recipes)}}
+
 {% endblock %}
