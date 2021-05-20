@@ -1,0 +1,41 @@
+<div class="user-field-container">
+    <div class="user">
+        <div  class="item">
+            <div>
+                <h3>Nome</h3>
+            </div>
+            <div class="input-layout">
+                <input 
+                    required 
+                    type="text" 
+                    name="name" 
+                    placeholder="Digite o nome completo"
+                    value="{{user.name}}">
+            </div>
+        </div>
+
+        <div  class="item">
+            <div>
+                <h3>Email</h3>
+            </div>
+            <div class="input-layout">
+                <input 
+                    required 
+                    type="text" 
+                    name="email" 
+                    placeholder="Digite o email"
+                    value="{{user.name}}">
+            </div>
+        </div>
+    </div>
+    
+    <div  class="item-admin">
+        <input 
+            required 
+            type="checkbox" 
+            name="is_admin" 
+            placeholder="Digite o email"
+            value="{{user.name}}">
+            <p>Administrador</p>
+    </div>
+</div>

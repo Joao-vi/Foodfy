@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="google-site-verification" content="WMEZdW9GDm1Wo0iXxSkhrmveiKkeXiymPptxmUe7zg8" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="/styles.css">
+     {% include "parts/styles.njk" %}
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-174272825-1"></script>
@@ -23,31 +23,27 @@
 </head>
 
 <body>
-        <header >
+      <header >
             <div class="header">
                 <img src="/assets/logo.png" alt="Logo" onClick=return_index()>
-                    <div class="menu">
-                        <div>
-                            {% block header%}
-                                <a href="/about">Sobre</a>
-                                <a href="/recipes">Receitas</a> 
-                                <a href="/chefs">Chefes</a>
-                            {% endblock %}
-                        </div>
-                        {% block filter %}
+                <div class="menu">
+                    <div>
+                        {% block header%}
+                            <a href="/about">Sobre</a>
+                            <a href="/recipes">Receitas</a> 
+                            <a href="/chefs">Chefes</a>
                         {% endblock %}
                     </div>
+                    {% block filter %}
+                    {% endblock %}
+                </div>
             </div>
-              
         </header>
     <div class="content">
         {% block content %}
         {% endblock %}
     </div>
-     <footer>
-        <p>Todos direitos reservados, receitas Foodfy.</p>
-    </footer>
-    <script src="/script.js"></script>
+    {%include 'parts/footer.njk'%}
 </body>
 
 </html>

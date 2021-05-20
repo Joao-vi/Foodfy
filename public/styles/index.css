@@ -280,7 +280,7 @@ footer p {
 
 .detail-admin button {
     background: #6558C3 100%;
-    padding: 6px 15px;
+    width: 130px;
     border-color: transparent;
     border-radius: 4px;
     font-family: Roboto-Bold;

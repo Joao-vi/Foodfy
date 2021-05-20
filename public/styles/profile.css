@@ -1,0 +1,24 @@
+.field-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+}
+
+.field-container .item-admin {
+    display: flex;
+    align-items: center;
+    margin-top: 30px;
+}
+
+.field-container .item-admin input {
+    background: #FFFFFF;
+    border: 1px solid #DDDDDD;
+    border-radius: 8px;
+}
+
+.field-container .item-admin p {
+    font-weight: bold;
+    font-size: 16px;
+    color: #111111;
+    margin-left: 8px;
+}
