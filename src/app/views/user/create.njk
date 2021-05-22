@@ -8,15 +8,15 @@
 {% block content %}
     <div class="detail-admin user"> 
         <div id="title-acessed">
-            <h1>Bem Vindo João</h1>
+            <h1>Criar Usuário</h1>
         </div>
         <div class="create">
             <button type="submit" form="create-user">Salvar</button>
-            <button >Cancelar</button>
+            <a class="button" href="/admin/users">Cancelar</a>
         </div>
         
     </div>
-    <form id="create-user" method="POST" action="/admin/chefs" enctype="multipart/form-data">
+    <form id="create-user" method="POST" action="/admin/users" enctype="multipart/form-data">
        
   {%include 'user/fields.njk'%}
 {% endblock %}

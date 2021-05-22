@@ -34,8 +34,10 @@
             required 
             type="checkbox" 
             name="is_admin" 
-            placeholder="Digite o email"
-            value="{{user.name}}">
+            {% if user.is_admin == "0" %}
+                checked
+            {% endif %}
+            >
             <p>Administrador</p>
     </div>
 </div>

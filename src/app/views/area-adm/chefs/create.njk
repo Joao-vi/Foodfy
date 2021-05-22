@@ -1,8 +1,9 @@
 {% extends "../../layout.njk" %} 
 
 {% block header%}
-        <a href="/admin/recipes">Receitas</a>
-        <a href="/admin/chefs">Chefs</a>
+        <a href="/admin/recipes">RECEITAS</a>
+        <a href="/admin/chefs">CHEFS</a>
+        <a href="/admin/users">USUÁRIOS</a>
 {% endblock %}
 {% block content %}
     <div class="detail-admin"> 
@@ -10,7 +11,7 @@
             <h1>Criando chef </h1>
         </div>
         <div class="create">
-            <button type="submit" form="create-recipe">Salvar chef</button>
+            <button type="submit" form="create-recipe">Salvar</button>
         </div>
     </div>
     <form id="create-recipe" method="POST" action="/admin/chefs" enctype="multipart/form-data">

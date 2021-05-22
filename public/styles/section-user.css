@@ -1,0 +1,34 @@
+.more-acessed-cards.admin-user .user-card {
+    margin-top: 72px;
+}
+
+.more-acessed-cards.admin-user .user-card h3 {
+    font-family: Helvetica;
+    font-size: 18px;
+    color: #111111;
+}
+
+.more-acessed-cards.admin-user .user-card p {
+    margin-top: 4px;
+    font-family: Helvetica;
+    font-size: 14px;
+    color: #777777;
+}
+
+.more-acessed-cards.admin-user .user-card .options {
+    margin-top: 15px;
+}
+
+.more-acessed-cards.admin-user .user-card .options a {
+    font-family: Helvetica-Bold;
+    font-size: 14px;
+    color: #6558C3;
+}
+
+.more-acessed-cards.admin-user .user-card .options button {
+    font-family: Helvetica-Bold;
+    background-color: transparent;
+    font-size: 14px;
+    color: #F55A5A;
+    margin-left: 16px;
+}

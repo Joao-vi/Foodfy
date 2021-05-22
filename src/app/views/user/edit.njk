@@ -1,0 +1,25 @@
+{% extends "../layout.njk" %} 
+
+{% block header%}
+        <a href="/admin/recipes">RECEITAS</a>
+        <a href="/admin/users">CHEFS</a>
+        <a href="/admin/users">USUÁRIOS</a>
+{% endblock %}
+{% block content %}
+    <div class="detail-admin user"> 
+        <div id="title-acessed">
+            <h1>Atualizar Usuário</h1>
+        </div>
+         <div>
+            <button form="form-delete-user" type="submit">Deletar</button>
+            <button form="form-put" type="submit">Salvar</button>
+        </div>
+        
+    </div>
+     <form id="form-put" action="/admin/users/{{user.id}}?_method=PUT" method="POST" >
+            {%include 'user/fields.njk'%}   
+    </form>
+    <form id="form-delete-user" action="/admin/users{{user.id}}?_method=DELETE" method="POST" >
+    </form>
+       
+{% endblock %}

@@ -278,6 +278,12 @@ footer p {
     justify-content: space-between;
 }
 
+.detail-admin #title-acessed,
+.detail-admin #title-acessed h1 {
+    margin-bottom: 0px;
+}
+
+.create a.button,
 .detail-admin button {
     background: #6558C3 100%;
     width: 130px;
@@ -292,6 +298,10 @@ footer p {
 .detail-admin button:first-child {
     background: #DC4747 100%;
     margin-right: 10px;
+}
+
+.create a.button {
+    padding: 6.5px 37px;
 }
 
 .detail-admin .create button {

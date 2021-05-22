@@ -1,0 +1,32 @@
+{% extends "../layout.njk" %} 
+
+{% block header%}
+        <a href="/admin/recipes">RECEITAS</a>
+        <a href="/admin/users">CHEFS</a>
+        <a href="/admin/users">USUÁRIOS</a>
+{% endblock %}
+{% block content %}
+
+<div class="detail-admin">
+        <div id="title-acessed" class="title-admin">
+            <h1>Usuários</h1>
+        </div>
+            <div class="create">
+        <a class="button" href="/admin/users/create">Novo</a>
+    </div>
+</div>
+<section class="more-acessed-cards admin-user">
+    {% for user in users %}
+        <div class="user-card">
+            <h3>Joao{{user.name}}</h3>
+            <p>joao@joao.com</p>
+            <div class="options">
+                <a href="/admin/users/{{user.id}}/edit">Editar</a>
+                <button type="submit" form="form-delete-user">Remover</button>
+            </div>
+        </div>
+        <form id="form-delete-user" action="/admin/users/{{user.id}}?_method=DELETE" method="POST"></form>
+    {% endfor %}
+</section>
+
+{% endblock %}

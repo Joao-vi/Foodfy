@@ -10,9 +10,14 @@
         <a href="/admin/users">USUÁRIOS</a>
 {% endblock %}
 {% block content %}
-        <div id="title-acessed" class="title-admin">
-            <h1>Gerenciar receitas</h1>
-        </div>
+<div class="detail-admin">
+    <div id="title-acessed" class="title-admin">
+        <h1>Gerenciar receitas</h1>
+    </div>
+    <div class="create">
+        <a class="button" href="/admin/recipes/create">Nova</a>
+    </div>
+</div>
          {{cards.list_recipes("/admin", recipes)}}
 
 {% endblock %}
