@@ -1,5 +1,6 @@
-.more-acessed-cards.admin-user .user-card {
+.more-acessed-cards.admin-user {
     margin-top: 72px;
+    margin-bottom: 0;
 }
 
 .more-acessed-cards.admin-user .user-card h3 {

@@ -31,10 +31,10 @@
     
     <div  class="item-admin">
         <input 
-            required 
             type="checkbox" 
             name="is_admin" 
-            {% if user.is_admin == "0" %}
+            value="1"
+            {% if user.is_admin == "1" %}
                 checked
             {% endif %}
             >
