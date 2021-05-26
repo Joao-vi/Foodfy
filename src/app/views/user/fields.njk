@@ -24,7 +24,7 @@
                     type="text" 
                     name="email" 
                     placeholder="Digite o email"
-                    value="{{user.name}}">
+                    value="{{user.email}}">
             </div>
         </div>
     </div>
@@ -34,7 +34,7 @@
             type="checkbox" 
             name="is_admin" 
             value="1"
-            {% if user.is_admin == "1" %}
+            {% if user.is_admin == 1 %}
                 checked
             {% endif %}
             >

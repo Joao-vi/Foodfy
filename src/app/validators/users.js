@@ -37,7 +37,45 @@ async function post(req, res, next) {
 
     next()
 }
+async function profile(req, res, next) {
+    const { id } = req.params
+    const user = await User.findOne({ where: { id } })
+
+    if (!user) {
+        return res.render('user/index.njk', {
+            error: "Usuário não encontrado"
+        })
+    }
+
+    req.user = user
+    next()
+}
+async function update(req, res, next) {
+    const fillAllFields = checkAllFields(req.body)
+
+    if (fillAllFields) {
+        return res.render('user/edit.njk', fillAllFields)
+    }
+
+    const { id } = req.params
+
+
+    const user = await User.findOne({ where: { id } })
+
+    if (!user) {
+        return res.render('user/edit.njk', {
+            error: "Usuário não encontrado"
+        })
+    }
+
+
+
+    req.user = user
+    next()
+}
 
 module.exports = {
-    post
+    post,
+    profile,
+    update
 }

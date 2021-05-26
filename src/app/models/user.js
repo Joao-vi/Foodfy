@@ -72,28 +72,31 @@ module.exports = {
             console.error(err)
         }
     },
-    update(data) {
-        const query = `
-        UPDATE chefs SET
-            name= $1,
-            file_id = $2
-
-            WHERE id = $3
-        `
-        const values = [
-            data.name,
-            data.file_id,
-            data.id
-        ]
+    update(id, fields) {
+        let query = `
+        UPDATE users SET
+    `
         try {
+            Object.keys(fields).map((key, index, array) => {
+                if ((index + 1) < array.length) {
+                    query = `${query}
+                    ${key} = '${fields[key]}',
+                    `
+                } else {
+                    query = `${query}
+                    ${key} = '${fields[key]}'
+                    WHERE id = ${id}
+                    `
+                }
+            })
 
-            return db.query(query, values)
+            return db.query(query)
         } catch (err) {
             console.error(err)
         }
     },
     delete(id) {
-        const query = `DELETE FROM chefs WHERE id = ${id} `
+        const query = `DELETE FROM users WHERE id = ${id} `
         try {
             return db.query(query)
         } catch (err) {
