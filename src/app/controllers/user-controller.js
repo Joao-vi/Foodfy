@@ -5,10 +5,10 @@ module.exports = {
         const results = await User.all()
         let users = results.rows
 
-        return res.render('user/index.njk', { users })
+        return res.render('area-adm/users/index.njk', { users })
     },
     create(req, res) {
-        return res.render('user/register.njk')
+        return res.render('area-adm/users/register.njk')
     },
     async post(req, res) {
         req.body.password = "teste"
@@ -19,11 +19,11 @@ module.exports = {
     },
     async edit(req, res) {
         const { user } = req
-        return res.render('user/edit.njk', { user })
+        return res.render('area-adm/users/edit.njk', { user })
     },
     async put(req, res) {
+        const { id } = req.params
         try {
-            const { id } = req.params
             let { name, email, is_admin } = req.body
             if (!is_admin)
                 is_admin = 0
@@ -36,11 +36,7 @@ module.exports = {
         } catch (err) {
             console.error(err)
 
-            return res.render('user/index.njk', {
-                user: req.body,
-
-                error: "Erro interno!"
-            })
+            return res.redirect(`/admin/users/${id}/edit`)
         }
     },
     async delete(req, res) {

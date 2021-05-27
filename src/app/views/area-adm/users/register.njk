@@ -1,4 +1,4 @@
-{% extends "../layout.njk" %} 
+{% extends "../../layout.njk" %} 
 
 {% block header%}
         <a href="/admin/recipes">RECEITAS</a>
@@ -18,5 +18,5 @@
     </div>
     <form id="create-user" method="POST" action="/admin/users" >
        
-  {%include 'user/fields.njk'%}
+  {%include 'area-adm/users/fields.njk'%}
 {% endblock %}
