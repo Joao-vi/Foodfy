@@ -25,15 +25,14 @@ module.exports = {
         try {
             const { id } = req.params
             let { name, email, is_admin } = req.body
+            if (!is_admin)
+                is_admin = 0
             await User.update(id, {
                 name,
                 email,
                 is_admin
             })
-            return res.render('user/edit.njk', {
-                user: req.body,
-                success: 'Cadastro atualizado com sucesso!'
-            })
+            return res.redirect(`/admin/users/${id}/edit`)
         } catch (err) {
             console.error(err)
 
@@ -47,15 +46,10 @@ module.exports = {
     async delete(req, res) {
         try {
             await User.delete(req.params.id)
-
-            return res.render('user/index.njk', {
-                success: "Usuário deletado com sucesso"
-            })
+            return res.redirect('/admin/users')
         } catch (error) {
             console.error(error)
-            return res.render('user/index.njk', {
-                error: "Erro ao deletar sua usuário!"
-            })
+            return res.redirect('/admin/users')
         }
     }
 }
