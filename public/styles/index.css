@@ -84,6 +84,7 @@ header .header .menu {
     color: #999999;
 }
 
+.button,
 .menu form button {
     background: var(--primary-color);
     padding: 0 20px;

@@ -1,0 +1,80 @@
+:root {
+    --primary-color: #6558C3;
+}
+
+section.login.container,
+section.password.container {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+section.login.container .header,
+section.password.container .header {
+    font-family: Helvetica-Bold;
+    font-size: 24px;
+    color: #111111;
+    text-align: center;
+}
+
+section.login.container .fields,
+section.password.container .fields {
+    margin-bottom: 35px;
+}
+
+.fields .item {
+    margin-top: 35px;
+}
+
+.fields .item>div:nth-child(1) {
+    font-family: Helvetica-Bold;
+    font-size: 16px;
+    color: #111111;
+    font-weight: bold;
+    margin: 0px;
+    margin-bottom: 10px;
+}
+
+.fields .item .input input {
+    background-color: #ffffff;
+    border: 1px solid #DDDDDD;
+    width: 100%;
+    padding: 16px 16px;
+    box-shadow: 1px 2px 2px -2px rgba(63, 63, 63);
+    border-radius: 4px;
+    font-size: 16px;
+    outline: none;
+    color: #999999;
+}
+
+section.login.container .footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+section.login.container .footer a {
+    color: #969696;
+    font-size: 16px;
+}
+
+section.login.container .footer a:hover {
+    color: var(--primary-color);
+}
+
+section.password.container.form form .button,
+section.login.container .footer .button {
+    border-radius: 4px;
+    width: 130px;
+    height: 37px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+section.password.container.form form {
+    display: flex;
+    flex-direction: column;
+}
+
+section.password.container.form form button {
+    align-self: flex-end;
+}

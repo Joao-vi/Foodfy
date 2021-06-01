@@ -5,24 +5,17 @@
 {% block content %}
 
 <section class="login container form">
-    <form method="POST" action="/users/login" >
+    <form method="POST" action="/admin/users/login" >
         <div class="header">
-            <h3>Entrar</h3>
+            <h3>Iniciar Sessão</h3>
         </div>
         <div class="fields">
              {% include 'area-adm/session/fields.njk'%}
         </div>
-            <div class="footer">
-                <ul>
-                    <li>
-                       
-                        <a href="/admin/users/forgot-password">Perdeu a senha?</a>
-                    </li>
-                    <li>
+        <div class="footer">
+            <a href="/admin/users/forgot-password">Perdeu a senha?</a>
             <button class="button" type="submit">Acessar</button>
-                    </li>
-                </ul>
-            </div>
+        </div>
     </form>
 </section>
 {% endblock content %}
