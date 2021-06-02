@@ -1,6 +1,25 @@
 {% extends "../../layout.njk" %} 
 {% import "../../parts/chef-part.njk" as chefs %}
+{% import "../../parts/header.njk" as header %}
+{% block header %}
+{{ header.header( "logo.png", {  
+ 'items': [
+  {
+     'name': 'SOBRE',
+     'path': '/about'
+  },
+  {
+     'name': 'RECEITAS',
+     'path': '/recipes'
+  },
+  {
+     'name': 'CHEFS',
+     'path': '/chefs'
+  }
+]
+} , false, filter) }}
 
+{% endblock %}
 {% block content %}
     {{chefs.chef_part('', recipes, chef,file)}}
 {% endblock %}

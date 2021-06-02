@@ -1,8 +1,29 @@
 {% extends "../layout.njk" %} 
+{% import "../parts/header.njk" as header %}
+
 {% block head %}
     <title>Sobre</title>
 
 {% endblock%}
+{% block header%}
+{{ header.header( "logo.png", {  
+ 'items': [
+  {
+     'name': 'SOBRE',
+     'path': '/about'
+  },
+  {
+     'name': 'RECEITAS',
+     'path': '/recipes'
+  },
+  {
+     'name': 'CHEFS',
+     'path': '/chefs'
+  }
+]
+} , false, filter) }}
+
+{% endblock %}
 {% block content %}
         <section class="history">
 

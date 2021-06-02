@@ -1,7 +1,25 @@
 {% extends "../../layout.njk" %} 
 
+{% import "../../parts/header.njk" as header %}
+
 {% block header%}
-     
+{{ header.header( "white-logo.png", {  
+ 'items': [
+  {
+     'name': 'RECEITAS',
+     'path': '/admin/recipes'
+  },
+  {
+     'name': 'CHEFS',
+     'path': '/admin/chefs'
+  },
+  {
+     'name': 'USUÁRIOS',
+     'path': '/admin/users'
+  }
+]
+} , false) }}
+
 {% endblock %}
 {% block content %}
 

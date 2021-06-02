@@ -1,8 +1,25 @@
 {% extends "../../layout.njk" %} 
 {% import "../../parts/chef-part.njk" as chefs %}
+{% import "../../parts/header.njk" as header %}
+
 {% block header%}
-        <a href="/admin/recipes">Receitas</a>
-        <a href="/admin/chefs">Chefs</a>
+{{ header.header( "white-logo.png", {  
+ 'items': [
+  {
+     'name': 'RECEITAS',
+     'path': '/admin/recipes'
+  },
+  {
+     'name': 'CHEFS',
+     'path': '/admin/chefs'
+  },
+  {
+     'name': 'USUÁRIOS',
+     'path': '/admin/users'
+  }
+]
+} , false) }}
+
 {% endblock %}
 {% block content %}
     {{chefs.chef_part('/admin', recipes, chef,file)}}

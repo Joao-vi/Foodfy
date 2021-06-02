@@ -167,17 +167,6 @@ const pagination = document.querySelector('.pagination')
 if (pagination)
     create_pagination(pagination)
 
-/*----- header black -----*/
-
-const _header = document.querySelector(".header")
-const logo = document.querySelector(".header img")
-const Header = _header.parentNode
-
-if (currentPage.includes("admin")) {
-    Header.classList.add("admin")
-    logo.src = "/assets/white-logo.png"
-}
-
 const UploadPhoto = {
     name_field: document.querySelector('.input-layout p'),
     input: "",

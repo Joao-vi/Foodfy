@@ -1,5 +1,24 @@
 {% extends "../../layout.njk" %} 
+{% import "../../parts/header.njk" as header %}
+{% block header %}
+{{ header.header( "logo.png", {  
+ 'items': [
+  {
+     'name': 'SOBRE',
+     'path': '/about'
+  },
+  {
+     'name': 'RECEITAS',
+     'path': '/recipes'
+  },
+  {
+     'name': 'CHEFS',
+     'path': '/chefs'
+  }
+]
+} , false, filter) }}
 
+{% endblock %}
 {% block content %}
     <div class="recipe-banner">
         <img src="{{files[0].src}}" alt="imagem de {{files[0].name}}">

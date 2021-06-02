@@ -1,0 +1,25 @@
+ {% macro header(logo, menu, filter_enable , filter)%}
+<header 
+{% if menu %}
+    {% if  "/admin" in menu.items[0].path  %}
+        class="admin"
+    {% endif %}
+{% endif %}
+>
+        <div class="header" >
+            <img src="/assets/{{logo}}" alt="Logo" onClick=return_index()>
+            {% if menu %}
+                <div class="menu">
+                    <div>
+                        {% for item in menu.items%}
+                            <a href="{{item.path}}">{{item.name}}</a>
+                            {% endfor%}
+                    </div>
+                    {% if filter_enable %}
+                        {% include 'parts/filter.njk' %}  
+                    {% endif %}
+                </div>
+            {% endif %}
+        </div>
+</header>
+{% endmacro %}

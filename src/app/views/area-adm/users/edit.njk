@@ -1,9 +1,25 @@
 {% extends "../../layout.njk" %} 
 
+{% import "../../parts/header.njk" as header %}
+
 {% block header%}
-        <a href="/admin/recipes">RECEITAS</a>
-        <a href="/admin/users">CHEFS</a>
-        <a href="/admin/users">USUÁRIOS</a>
+{{ header.header( "white-logo.png", {  
+ 'items': [
+  {
+     'name': 'RECEITAS',
+     'path': '/admin/recipes'
+  },
+  {
+     'name': 'CHEFS',
+     'path': '/admin/chefs'
+  },
+  {
+     'name': 'USUÁRIOS',
+     'path': '/admin/users'
+  }
+]
+} , false) }}
+
 {% endblock %}
 {% block content %}
     <div class="detail-admin user"> 

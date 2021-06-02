@@ -1,5 +1,24 @@
 {% extends "../layout.njk" %} 
+{% import "../parts/header.njk" as header %}
+{% block header %}
+{{ header.header( "logo.png", {  
+ 'items': [
+  {
+     'name': 'SOBRE',
+     'path': '/about'
+  },
+  {
+     'name': 'RECEITAS',
+     'path': '/recipes'
+  },
+  {
+     'name': 'CHEFS',
+     'path': '/chefs'
+  }
+]
+} , true, filter) }}
 
+{% endblock %}
 {% block filter %}
     <form action="/recipes" method="GET">
         <input 
