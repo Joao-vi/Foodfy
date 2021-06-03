@@ -313,7 +313,7 @@ if (menusHeaderAdmin)
 
 //area general
 const menusHeader = document.querySelectorAll('.header .menu div a')
-console.log(menusHeader)
+
 if (menusHeader)
     currentMenu(menusHeader)
 
