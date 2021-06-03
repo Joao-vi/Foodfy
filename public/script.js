@@ -299,3 +299,31 @@ const ImageGallery = {
 
     }
 }
+
+
+
+
+/*----- current page destaque -----*/
+
+// area admin
+const menusHeaderAdmin = document.querySelectorAll('.admin .header .menu a')
+
+if (menusHeaderAdmin)
+    currentMenu(menusHeaderAdmin)
+
+//area general
+const menusHeader = document.querySelectorAll('.header .menu div a')
+console.log(menusHeader)
+if (menusHeader)
+    currentMenu(menusHeader)
+
+function currentMenu(items) {
+
+    for (let item of items) {
+        if (currentPage.includes(item.pathname)) {
+            item.classList.add("active")
+        } else {
+            item.classList.remove("active")
+        }
+    }
+}

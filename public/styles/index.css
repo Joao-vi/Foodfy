@@ -43,6 +43,13 @@ a {
 }
 
 .admin .header .menu a {
+    font-family: Helvetica;
+    font-size: 15px;
+    color: #999999;
+    text-align: left;
+}
+
+.admin .header .menu a.active {
     color: white;
 }
 
@@ -102,7 +109,11 @@ header img {
     font-family: Roboto-Regular;
     font-size: 16px;
     margin: 0 16px;
-    color: #111111;
+    color: #000;
+}
+
+.menu div a.active {
+    font-weight: bold;
 }
 
 footer {
