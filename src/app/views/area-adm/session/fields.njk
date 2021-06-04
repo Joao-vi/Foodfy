@@ -3,6 +3,9 @@
     <div>Email</div>
     <div class="input">
         <input 
+            {% if error %}
+                class="error"
+            {% endif %}
             required
             type="Email" 
             name="email" 
@@ -16,6 +19,9 @@
     <div>Senha</div>
     <div class="input">
         <input 
+            {% if error %} 
+                class="error" 
+            {% endif %}
             required
             type="password" 
             name="password" 
@@ -23,3 +29,4 @@
             >
     </div>
 </div>
+

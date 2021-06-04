@@ -327,3 +327,65 @@ function currentMenu(items) {
         }
     }
 }
+
+
+/*----- validação de email -----*/
+
+const Validate = {
+    apply(input, func) {
+
+        Validate.clearErrors(input)
+
+        let results = Validate[func](input.value)
+        input.value = results.value
+        if (results.error) {
+            Validate.displayError(input, results.error)
+        }
+    },
+    clearErrors(input) {
+        console.log(input.classList)
+        input.classList.remove('error')
+        const errorDiv = input.parentNode.querySelector('div.error')
+        if (errorDiv)
+            errorDiv.remove()
+    },
+    displayError(input, error) {
+        input.classList.add('error')
+        const div = document.createElement('div')
+        div.classList.add('error')
+        div.innerHTML = error
+        input.parentNode.appendChild(div)
+    },
+    isEmail(value) {
+
+
+        let error = null
+            /* 
+                expressão regular para validar email. 
+                email pode começar com 1 ou + caracteres (excluido caracteres especiais) -> ^\w+
+                seguindo por conjunto de { ponto(.) ou underline (_) 
+                de forma opicional (representado pelo '?') seguindo de 1 ou + caracteres } 
+                com o asterisco dizendo que pode ter muitos ou nenhum desse conjunto -> ([\.\_]?\w+)*
+
+                depois o @
+
+                1 ou + caracteres (excluido caracteres especiais) -> \w+
+                seguindo por conjunto de { ponto(.) ou underline (_) 
+                de forma opicional (representado pelo '?') seguindo de 1 ou + caracteres } 
+                com o asterisco dizendo que pode ter muitos ou nenhum desse conjunto -> ([\.\_]?\w+)*
+
+
+                seguindo de {ponto(.), 2||3 caracteres} podendo ter 1 ou + vezes esse conjunto sinalizando o fim do email com o $ -> (\.\w{2,3})+$
+        
+            */
+        const emailFormat = /^\w+([\.\_]?\w+)*@\w+([\.\_]?\w+)*(\.\w{2,3})+$/
+
+        if (!value.match(emailFormat))
+            error = "Email inválido"
+        return {
+            error,
+            value
+        }
+    }
+
+}
