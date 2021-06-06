@@ -2,10 +2,17 @@ const express = require('express')
 const nunjucks = require('nunjucks')
 const server = express()
 
+const session = require('./config/session')
 const route = require('./routes')
 const port = portNormalize(process.env.PORT || "5000")
 
 const methodOverride = require('method-override')
+server.use(session)
+server.use((req, res, next) => {
+    res.locals.session = req.session
+
+    next()
+})
 server.use(express.urlencoded({ extended: true }))
 server.use(express.static('public'))
 server.use(methodOverride("_method"))

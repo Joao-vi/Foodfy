@@ -1,0 +1,53 @@
+@keyframes hidemessage {
+    to {
+        right: -50px;
+        opacity: 0;
+    }
+}
+
+@keyframes showmessage {
+    to {
+        right: 20px;
+        opacity: 1;
+    }
+}
+
+.messages {
+    display: flex;
+    justify-content: center;
+    padding: 32px;
+    position: absolute;
+    width: 350px;
+    color: white;
+    opacity: 0;
+    font-size: 16px;
+    right: 0;
+    top: 10px;
+    border-radius: 4px;
+    animation: showmessage 200ms 1s ease-out forwards, hidemessage 400ms 5s ease-out forwards;
+    transition: all 200ms;
+}
+
+.messages.error {
+    background-color: #DC4747;
+}
+
+.messages.success {
+    background-color: #01B12A;
+}
+
+.item .input input.error {
+    border: 1px solid #FF3131;
+}
+
+
+/*---------- Validate error ----------*/
+
+.input .error {
+    padding: 4px;
+    border-radius: 4px;
+    color: #DC4747;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    font-size: 14px;
+}

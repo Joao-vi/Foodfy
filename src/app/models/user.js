@@ -1,4 +1,5 @@
 const db = require('../../config/db')
+const { hash } = require('bcryptjs')
 const { age, date, graduation } = require('../../lib/utils')
 
 module.exports = {
@@ -15,7 +16,7 @@ module.exports = {
             console.error(err)
         }
     },
-    create(data) {
+    async create(data) {
         const query = `
             INSERT INTO users (
                 name,
@@ -25,10 +26,11 @@ module.exports = {
                 ) VALUES ($1,$2,$3,$4) 
                 RETURNING id
                 `
+        const passwordHash = await hash(data.password, 8)
         const values = [
             data.name,
             data.email,
-            data.password,
+            passwordHash,
             data.is_admin || 0
         ]
 

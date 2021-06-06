@@ -43,14 +43,28 @@ a {
 }
 
 .admin .header .menu a {
+    text-transform: uppercase;
     font-family: Helvetica;
     font-size: 15px;
     color: #999999;
     text-align: left;
+    background-color: transparent;
 }
 
 .admin .header .menu a.active {
     color: white;
+}
+
+.admin .header .logout button {
+    font-family: Helvetica;
+    padding: 0;
+    font-size: 15px;
+    color: #fff;
+    text-align: center;
+    background-color: transparent;
+    text-transform: uppercase;
+    cursor: pointer;
+    border: none;
 }
 
 header {

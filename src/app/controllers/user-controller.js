@@ -1,3 +1,6 @@
+const { Console } = require('console')
+const crypto = require('crypto')
+const mailer = require('../../lib/mailer')
 const User = require('../models/user')
 
 module.exports = {
@@ -11,11 +14,39 @@ module.exports = {
         return res.render('area-adm/users/register.njk')
     },
     async post(req, res) {
-        req.body.password = "teste"
+        try {
+            req.body.password = crypto.randomBytes(4).toString('hex')
 
-        await User.create(req.body)
-            //mandar email com senha criada 
-        return res.redirect('/admin/users/')
+            const result = await User.create(req.body)
+            const user = result.rows[0]
+            if (!user)
+                return res.render('area-adm/users/register.njk', {
+                    user: req.body,
+                    error: "Erro ao registrar usuário!"
+                })
+
+            await mailer.sendMail({
+                to: req.body.email,
+                from: 'no-reply@foodfy.com.br',
+                subject: 'Senha de acesso ao Foodfy',
+                html: `
+                <h2>Senha de acesso</h2>
+                <h3>${req.body.name},</h3>
+                <p>Sua senha: ${req.body.password}</p>
+                <p>Clique no link abaixo para realizar seu login no Foodfy:</p>
+                <p>
+                    <a href="http://localhost:3000/admin/users/login" target="_blank">Login</a>
+                </p>
+            `
+            })
+            return res.redirect('/admin/users/')
+        } catch (error) {
+            console.error(error)
+            return res.render('area-adm/users/register.njk', {
+                user: req.body,
+                error: "Erro inesperado!"
+            })
+        }
     },
     async edit(req, res) {
         const { user } = req

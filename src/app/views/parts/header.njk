@@ -1,4 +1,4 @@
- {% macro header(logo, menu, filter_enable , filter)%}
+ {% macro header(logo, menu, filter_enable , filter,session)%}
 <header 
 {% if menu %}
     {% if  "/admin" in menu.items[0].path  %}
@@ -7,6 +7,7 @@
 {% endif %}
 >
         <div class="header" >
+            
             <img src="/assets/{{logo}}" alt="Logo" onClick=return_index()>
             {% if menu %}
                 <div class="menu">
@@ -19,6 +20,11 @@
                         {% include 'parts/filter.njk' %}  
                     {% endif %}
                 </div>
+            {% endif %}        
+            {% if session.userId%} 
+                <form action="/admin/users/logout" class="logout" method="POST">
+                    <button>Sair</button>
+                </form>
             {% endif %}
         </div>
 </header>

@@ -1,4 +1,5 @@
 const User = require('../models/user')
+
 const { compare } = require('bcryptjs')
 
 
@@ -7,7 +8,7 @@ async function login(req, res, next) {
     const user = await User.findOne({ where: { email } })
 
     if (!user) {
-        return res.render('session/login.njk', {
+        return res.render('area-adm/session/login.njk', {
             user: req.body,
             error: "Usuário não cadastrado"
         })
@@ -15,7 +16,7 @@ async function login(req, res, next) {
     const passed = await compare(password, user.password)
 
     if (!passed) {
-        return res.render('session/login.njk', {
+        return res.render('area-adm/session/login.njk', {
             user: req.body,
             error: 'Senha inválida.'
         })

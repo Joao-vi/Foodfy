@@ -18,7 +18,7 @@ async function post(req, res, next) {
     const fillAllFields = checkAllFields(req.body)
 
     if (fillAllFields) {
-        return res.render('user/register.njk', fillAllFields)
+        return res.render('area-adm/users/register.njk', fillAllFields)
     }
 
     const { email } = req.body
@@ -28,7 +28,7 @@ async function post(req, res, next) {
     })
 
     if (user)
-        return res.render("user/register.njk", {
+        return res.render("area-adm/users/register.njk", {
             user: req.body,
             error: 'Usuário já cadastrado.'
         })
