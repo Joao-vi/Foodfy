@@ -23,7 +23,7 @@ async function post(req, res, next) {
 
     const { email } = req.body
 
-    const user = await User.findOne({
+    const user = await User.find({
         where: { email }
     })
 
@@ -39,10 +39,10 @@ async function post(req, res, next) {
 }
 async function profile(req, res, next) {
     const { id } = req.params
-    const user = await User.findOne({ where: { id } })
+    const user = await User.find({ where: { id } })
 
     if (!user) {
-        return res.render('user/index.njk', {
+        return res.render('area-adm/users/index.njk', {
             error: "Usuário não encontrado"
         })
     }
@@ -54,16 +54,16 @@ async function update(req, res, next) {
     const fillAllFields = checkAllFields(req.body)
 
     if (fillAllFields) {
-        return res.render('user/edit.njk', fillAllFields)
+        return res.render('area-adm/users/edit.njk', fillAllFields)
     }
 
     const { id } = req.params
 
 
-    const user = await User.findOne({ where: { id } })
+    const user = await User.find({ where: { id } })
 
     if (!user) {
-        return res.render('user/edit.njk', {
+        return res.render('area-adm/users/edit.njk', {
             error: "Usuário não encontrado"
         })
     }
@@ -74,8 +74,39 @@ async function update(req, res, next) {
     next()
 }
 
+async function updateProfile(req, res, next) {
+    const fillAllFields = checkAllFields(req.body)
+
+    if (fillAllFields) {
+        return res.render('area-adm/users/profile/index.njk', fillAllFields)
+    }
+
+    const id = req.session.userId
+
+
+    const user = await User.find({ where: { id } })
+
+    if (!user) {
+        return res.render('area-adm/users/profile/index.njk', {
+            error: "Usuário não encontrado"
+        })
+    }
+    const passed = await compare(req.body.password, user.password)
+    if (!passed) {
+        return res.render('area-adm/users/profile/index.njk', {
+            user: user,
+            error: "Senha inválida"
+        })
+    }
+
+
+    req.user = user
+    next()
+}
+
 module.exports = {
     post,
     profile,
-    update
+    update,
+    updateProfile
 }

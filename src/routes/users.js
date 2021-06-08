@@ -27,7 +27,7 @@ routes.post('/reset-password', SessionValidator.reset, SessionController.reset)
 
 
 routes.get('/profile', onlyUsers, ProfileController.index)
-    //routes.put('/profile', ProfileController.put)// Editar o usuário logado
+routes.put('/profile', UserValidator.updateProfile, ProfileController.put) // Editar o usuário logado
 
 
 routes.get('/', onlyUsers, UserController.list) // Mostrar a lista de usuários cadastrados

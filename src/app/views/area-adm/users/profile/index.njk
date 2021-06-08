@@ -1,6 +1,6 @@
-{% extends "../layout.njk" %} 
+{% extends "../../../layout.njk" %} 
 
-{% import "../parts/header.njk" as header %}
+{% import "../../../parts/header.njk" as header %}
 
 {% block header%}
 {{ header.header( "white-logo.png", {  
@@ -18,21 +18,22 @@
      'path': '/admin/users'
   }
 ]
-} , false) }}
+} , false,"",session) }}
 
 {% endblock %}
 {% block content %}
     <div class="detail-admin user"> 
         <div id="title-acessed">
-            <h1>Bem Vindo João</h1>
+            
+            <h1>Bem Vindo {{user.name}}</h1>
         </div>
         <div class="create">
-            <button type="submit" form="create-user">Salvar</button>
+            <button type="submit" form="edit-user">Salvar</button>
             
         </div>
         
     </div>
-    <form id="create-user" method="POST" action="/admin/chefs">
+    <form id="edit-user" method="POST" action="/admin/users/profile?_method=PUT">
        
-  {%include 'profile/fields.njk'%}
+  {%include 'area-adm/users/profile/fields.njk'%}
 {% endblock %}

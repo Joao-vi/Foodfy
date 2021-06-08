@@ -5,7 +5,7 @@ const { compare } = require('bcryptjs')
 
 async function login(req, res, next) {
     const { email, password } = req.body
-    const user = await User.findOne({ where: { email } })
+    const user = await User.find({ where: { email } })
 
     if (!user) {
         return res.render('area-adm/session/login.njk', {
@@ -29,7 +29,7 @@ async function login(req, res, next) {
 async function forgot(req, res, next) {
     const { email } = req.body
     try {
-        let user = await User.findOne({ where: { email } })
+        let user = await User.find({ where: { email } })
         if (!user) {
             return res.render('session/forgot-password.njk', {
                 user: req.body,
@@ -47,7 +47,7 @@ async function reset(req, res, next) {
     const { email, password, passwordRepeat, token } = req.body
 
     try {
-        let user = await User.findOne({ where: { email } })
+        let user = await User.find({ where: { email } })
         if (!user) {
             return res.render('session/reset-password.njk', {
                 user: req.body,

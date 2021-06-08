@@ -42,23 +42,8 @@ module.exports = {
 
 
     },
-    find(id) {
-        const query = `
-            SELECT chefs.*, COUNT (recipes) AS total_recipes
-            FROM chefs 
-            LEFT JOIN recipes ON (chefs.id = recipes.chef_id)
-            WHERE chefs.id=${id}
-            GROUP BY chefs.id 
-            `
-        try {
-            return db.query(query)
-        } catch (err) {
-            console.error("ERR " + err)
-        }
 
-
-    },
-    async findOne(filters) {
+    async find(filters) {
         let query = `SELECT * FROM users`
 
         Object.keys(filters).map(key => {

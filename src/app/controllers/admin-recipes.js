@@ -1,11 +1,20 @@
 const Recipe = require('../models/recipes')
 const Files = require('../models/file')
 const Recipe_files = require('../models/recipe_file')
+const User = require('../models/user')
+const Chef = require('../models/chefs')
+
 
 module.exports = {
     async index(req, res) {
-
-        let results = await Recipe.all()
+        const id = req.session.userId
+        let results
+        let user = await User.find({ where: { id } })
+        if (user.is_admin === '1')
+            results = await Recipe.all()
+        else {
+            results = await Chef.findForDetail(id)
+        }
         let recipes = results.rows
 
         let recipePromise = recipes.map(async(recipe) => ({
