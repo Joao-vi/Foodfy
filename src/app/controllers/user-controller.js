@@ -5,10 +5,11 @@ const User = require('../models/user')
 
 module.exports = {
     async list(req, res) {
+        const id = req.session.userId
         const results = await User.all()
         let users = results.rows
-
-        return res.render('area-adm/users/index.njk', { users })
+        let loggedUser = await User.find({ where: { id } })
+        return res.render('area-adm/users/index.njk', { users, loggedUser })
     },
     create(req, res) {
         return res.render('area-adm/users/register.njk')

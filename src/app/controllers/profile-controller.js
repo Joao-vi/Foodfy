@@ -1,7 +1,9 @@
 const User = require('../models/user')
 module.exports = {
     async index(req, res) {
-        let user = await User.find(req.session.userId)
+        const id = req.session.userId
+        let user = await User.find({ where: { id } })
+
         return res.render('area-adm/users/profile/index.njk', { user })
     },
     async put(req, res) {

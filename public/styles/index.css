@@ -322,6 +322,11 @@ footer p {
     cursor: pointer;
 }
 
+.detail-admin button:first-child.disabled {
+    background-color: #777;
+    cursor: inherit;
+}
+
 .detail-admin button:first-child {
     background: #DC4747 100%;
     margin-right: 10px;

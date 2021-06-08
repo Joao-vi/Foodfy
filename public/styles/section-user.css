@@ -32,4 +32,10 @@
     font-size: 14px;
     color: #F55A5A;
     margin-left: 16px;
+    cursor: pointer;
+}
+
+.more-acessed-cards.admin-user .user-card .options .disabled {
+    color: #777777;
+    cursor: initial;
 }

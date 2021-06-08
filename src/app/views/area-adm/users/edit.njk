@@ -18,7 +18,7 @@
      'path': '/admin/users'
   }
 ]
-} , false) }}
+} , false,"",session) }}
 
 {% endblock %}
 {% block content %}
@@ -27,7 +27,16 @@
             <h1>Atualizar Usuário</h1>
         </div>
          <div>
-            <button form="form-delete-user" type="submit">Deletar</button>
+            <button  
+                form="form-delete-user" 
+                type="submit" 
+                 {%if user.id == session.userId %}
+                    disabled 
+                    class="disabled"
+                {% endif %}
+                >
+                Deletar
+            </button>
             <button form="form-put" type="submit">Salvar</button>
         </div>
         

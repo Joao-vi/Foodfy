@@ -24,7 +24,7 @@
     right: 0;
     top: 10px;
     border-radius: 4px;
-    animation: showmessage 200ms 1s ease-out forwards, hidemessage 400ms 5s ease-out forwards;
+    animation: showmessage 200ms 500ms ease-out forwards, hidemessage 400ms 5s ease-out forwards;
     transition: all 200ms;
 }
 

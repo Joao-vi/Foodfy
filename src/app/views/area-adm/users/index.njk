@@ -18,7 +18,7 @@
      'path': '/admin/users'
   }
 ]
-} , false) }}
+} , false,"",session) }}
 
 {% endblock %}
 {% block content %}
@@ -36,11 +36,32 @@
         <div class="user-card">
             <h3>{{user.name}}</h3>
             <p>{{user.email}}</p>
-            <div class="options">
-                <a href="/admin/users/{{user.id}}/edit">Editar</a>
-                <button type="submit" form="form-delete-user-{{user.id}}">Remover</button>
-            </div>
-        <form id="form-delete-user-{{user.id}}" action="/admin/users/{{user.id}}?_method=DELETE" method="POST"></form>
+           
+                <div class="options">
+                    <a  
+                         {% if loggedUser.is_admin == '1' or loggedUser.id == user.id %}
+                            href="/admin/users/{{user.id}}/edit"
+                         {% else %}
+                            href=""
+                            class="disabled"
+                        {% endif %}
+                        >
+                        Editar
+                    </a>
+                    
+                    <button 
+                        type="submit" 
+                        form="form-delete-user-{{user.id}}" 
+                        {%if loggedUser.id == session.userId or loggedUser.is_admin == '0'%}
+                            disabled 
+                            class="disabled"
+                        {% endif %}
+                        >
+                        Remover
+                    </button>
+                </div>
+                
+            <form id="form-delete-user-{{user.id}}" action="/admin/users/{{user.id}}?_method=DELETE" method="POST"></form>
         </div>
     {% endfor %}
 </section>

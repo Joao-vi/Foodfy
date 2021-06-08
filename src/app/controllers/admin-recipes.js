@@ -10,7 +10,8 @@ module.exports = {
         const id = req.session.userId
         let results
         let user = await User.find({ where: { id } })
-        if (user.is_admin === '1')
+
+        if (user.is_admin == '1')
             results = await Recipe.all()
         else {
             results = await Chef.findForDetail(id)
