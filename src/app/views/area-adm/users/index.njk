@@ -52,7 +52,7 @@
                     <button 
                         type="submit" 
                         form="form-delete-user-{{user.id}}" 
-                        {%if loggedUser.id == session.userId or loggedUser.is_admin == '0'%}
+                        {%if loggedUser.id == user.id or loggedUser.is_admin == '0'%}
                             disabled 
                             class="disabled"
                         {% endif %}

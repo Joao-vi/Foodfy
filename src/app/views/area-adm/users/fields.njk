@@ -28,16 +28,17 @@
             </div>
         </div>
     </div>
-    
-    <div  class="item-admin">
-        <input 
-            type="checkbox" 
-            name="is_admin" 
-            value="1"
-            {% if user.is_admin == 1 %}
-                checked
-            {% endif %}
-            >
-            <p>Administrador</p>
-    </div>
+    {% if user.is_admin == '1' %}
+        <div  class="item-admin">
+            <input 
+                type="checkbox" 
+                name="is_admin" 
+                value="1"
+                {% if user.is_admin == 1 %}
+                    checked
+                {% endif %}
+                >
+                <p>Administrador</p>
+        </div>
+    {% endif %}
 </div>

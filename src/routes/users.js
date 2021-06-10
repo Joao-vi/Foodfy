@@ -8,7 +8,7 @@ const SessionController = require('../app/controllers/session-controller')
 const UserValidator = require('../app/validators/users')
 const SessionValidator = require('../app/validators/session')
 
-const { isLogged, onlyUsers } = require('../app/middlewares/session')
+const { isLogged, onlyUsers, onlyUsersAdmin } = require('../app/middlewares/session')
 
 
 //login/logout
@@ -31,10 +31,10 @@ routes.put('/profile', UserValidator.updateProfile, ProfileController.put) // Ed
 
 
 routes.get('/', onlyUsers, UserController.list) // Mostrar a lista de usuários cadastrados
-routes.post('/', onlyUsers, UserValidator.post, UserController.post) // Cadastrar um usuário
-routes.get('/create', onlyUsers, UserController.create) // Mostrar o formulário de criação de um usuário
-routes.put('/:id', onlyUsers, UserValidator.update, UserController.put) // Editar um usuário
-routes.get('/:id/edit', onlyUsers, UserValidator.profile, UserController.edit) // Mostrar o formulário de edição de um usuário
-routes.delete('/:id', onlyUsers, UserController.delete) // Deletar um usuári
+routes.post('/', onlyUsersAdmin, UserValidator.post, UserController.post) // Cadastrar um usuário
+routes.get('/create', onlyUsersAdmin, UserController.create) // Mostrar o formulário de criação de um usuário
+routes.put('/:id', onlyUsersAdmin, UserValidator.update, UserController.put) // Editar um usuário
+routes.get('/:id/edit', onlyUsersAdmin, UserValidator.profile, UserController.edit) // Mostrar o formulário de edição de um usuário
+routes.delete('/:id', onlyUsersAdmin, UserController.delete) // Deletar um usuári
 
 module.exports = routes

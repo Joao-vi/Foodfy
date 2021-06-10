@@ -11,11 +11,9 @@ module.exports = {
         let results
         let user = await User.find({ where: { id } })
 
-        if (user.is_admin == '1')
-            results = await Recipe.all()
-        else {
-            results = await Chef.findForDetail(id)
-        }
+
+        results = await Recipe.all()
+
         let recipes = results.rows
 
         let recipePromise = recipes.map(async(recipe) => ({
@@ -41,8 +39,13 @@ module.exports = {
 
     },
     async show(req, res) {
-        const { id } = req.params
-        let results = await Recipe.find(id)
+        const recipe_id = req.params.id
+
+        const id = req.session.userId
+
+        const user = await User.find({ where: { id } })
+
+        let results = await Recipe.find(recipe_id)
 
         let recipe = results.rows[0]
 
@@ -51,7 +54,7 @@ module.exports = {
                 src: `${req.protocol}://${req.headers.host}${file.path.replace('public','')}`
             }))
             //console.log(recipe)
-        return res.render('area-adm/recipes/recipe', { id, recipe, files })
+        return res.render('area-adm/recipes/recipe', { recipe, files, user })
 
     },
     async edit(req, res) {
@@ -86,7 +89,7 @@ module.exports = {
 
         if (req.files.length == 0)
             return res.send('Please, send at least one image')
-
+        req.body.user_id = req.session.userId
         let results = await Recipe.create(req.body)
         const recipeId = results.rows[0].id
 

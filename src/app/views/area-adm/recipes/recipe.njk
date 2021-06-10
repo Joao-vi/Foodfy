@@ -26,7 +26,15 @@
         <div id="title-acessed">
             <h1>Receita: {{recipe.title}}</h1>
         </div>
-        <button  onclick="window.location.href='/admin/recipes/{{id}}/edit'" >Editar receita</button>
+        <button  
+            onclick="window.location.href='/admin/recipes/{{recipe.id}}/edit'" 
+            {%if user.id == user.id or loggedUser.is_admin == '0'%}
+                disabled 
+                class="disabled"
+            {% endif %}
+            >
+                Editar
+        </button>
     </div>
     <div class="recipe-banner">
         <img src="{{files[0].src}}" alt="imagem de {{files[0].name}}">
