@@ -50,8 +50,9 @@ module.exports = {
         }
     },
     async edit(req, res) {
-        const { user } = req
-        return res.render('area-adm/users/edit.njk', { user })
+        const id = req.params.id
+        const user = await User.find({ where: { id } })
+        return res.render('area-adm/users/edit.njk', { user, loggedUser: req.user })
     },
     async put(req, res) {
         const { id } = req.params
@@ -64,7 +65,8 @@ module.exports = {
                 email,
                 is_admin
             })
-            return res.redirect(`/admin/users/${id}/edit`)
+
+            return res.render(`area-adm/users/edit.njk`, { user: req.body, loggedUser: req.user, success: "Usuário atualizado!" })
         } catch (err) {
             console.error(err)
 

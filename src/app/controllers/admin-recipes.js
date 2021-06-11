@@ -9,10 +9,11 @@ module.exports = {
     async index(req, res) {
         const id = req.session.userId
         let results
-        let user = await User.find({ where: { id } })
 
-
-        results = await Recipe.all()
+        if (req.user.is_admin == '1')
+            results = await Recipe.all()
+        else
+            results = await Recipe.findForUser(req.user.id)
 
         let recipes = results.rows
 
@@ -41,43 +42,48 @@ module.exports = {
     async show(req, res) {
         const recipe_id = req.params.id
 
-        const id = req.session.userId
-
-        const user = await User.find({ where: { id } })
-
         let results = await Recipe.find(recipe_id)
 
         let recipe = results.rows[0]
 
         let files = results.rows.map(file => ({
-                ...file,
-                src: `${req.protocol}://${req.headers.host}${file.path.replace('public','')}`
-            }))
-            //console.log(recipe)
-        return res.render('area-adm/recipes/recipe', { recipe, files, user })
-
-    },
-    async edit(req, res) {
-        const { id } = req.params
-        let results = await Recipe.find(id)
-        const recipe = results.rows[0]
-
-        results = await Recipe.chefsSelectedOptions()
-        const chefOptions = results.rows
-        results = await Recipe_files.find(id)
-        let recipeFiles = results.rows
-
-        recipeFiles = recipeFiles.map(file => file.file_id)
-        recipeFiles = Object.values(recipeFiles)
-        results = await Files.findPhotos(recipeFiles)
-
-        let files = results.rows
-        files = files.map(file => ({
             ...file,
             src: `${req.protocol}://${req.headers.host}${file.path.replace('public','')}`
         }))
 
-        return res.render('area-adm/recipes/edit', { recipe, chefOptions, files, id })
+        return res.render('area-adm/recipes/recipe', { recipe, files, user: req.user })
+
+    },
+    async edit(req, res) {
+        const { id } = req.params
+        try {
+            let results = await Recipe.find(id)
+            const recipe = results.rows[0]
+
+            results = await Recipe.chefsSelectedOptions()
+            const chefOptions = results.rows
+            results = await Recipe_files.find(id)
+            let recipeFiles = results.rows
+
+            recipeFiles = recipeFiles.map(file => file.file_id)
+            recipeFiles = Object.values(recipeFiles)
+            results = await Files.findPhotos(recipeFiles)
+
+            let files = results.rows
+            files = files.map(file => ({
+                ...file,
+                src: `${req.protocol}://${req.headers.host}${file.path.replace('public','')}`
+            }))
+
+            return res.render('area-adm/recipes/edit', { recipe, chefOptions, files, id })
+        } catch (error) {
+            console.error(error)
+            return res.render('area-adm/recipes/index.njk', {
+
+                error: "Erro inesperado!"
+            })
+
+        }
 
     },
     async post(req, res) {

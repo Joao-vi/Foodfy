@@ -9,7 +9,9 @@ module.exports = {
             ...chef,
             avatar_url: `${req.protocol}://${req.headers.host}${chef.avatar_url.replace('public','')}`
         }))
-        return res.render('area-adm/chefs/index', { chefs })
+
+
+        return res.render('area-adm/chefs/index', { chefs, user: req.user })
 
     },
     create(req, res) {
@@ -33,7 +35,7 @@ module.exports = {
         }))
 
 
-        return res.render('area-adm/chefs/chef', { chef, recipes, file })
+        return res.render('area-adm/chefs/chef', { chef, recipes, file, user: req.user })
 
 
 

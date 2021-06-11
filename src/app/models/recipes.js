@@ -47,13 +47,28 @@ module.exports = {
     },
     find(id) {
         const query = `
-            SELECT recipes.*, files.*, chefs.name AS chef_name, chefs.id AS chef_id
+            SELECT recipes.*, files.path, chefs.name AS chef_name, chefs.id AS chef_id
             FROM recipes
             LEFT JOIN chefs ON (recipes.chef_id = chefs.id)
             LEFT JOIN recipe_files ON (recipe_files.recipe_id = recipes.id)
             LEFT JOIN files ON (recipe_files.file_id = files.id)
             WHERE recipes.id = ${id}
             `
+        try {
+            return db.query(query)
+        } catch (err) {
+            console.error(err)
+        }
+    },
+    findForUser(id) {
+
+        let query = `
+            SELECT recipes.*, chefs.name AS chef_name 
+            FROM recipes 
+            LEFT JOIN chefs ON (recipes.chef_id = chefs.id)
+            WHERE recipes.user_id = ${id}
+            ORDER BY title ASC`
+
         try {
             return db.query(query)
         } catch (err) {
