@@ -9,6 +9,6 @@ module.exports = {
     async put(req, res) {
         const { name, email } = req.body
         await User.update(req.session.userId, { name, email })
-        return res.render('area-adm/users/profile/index.njk', { user: req.body })
+        return res.render('area-adm/users/profile/index.njk', { user: req.body, success: "Usuário Atualizado!" })
     }
 }

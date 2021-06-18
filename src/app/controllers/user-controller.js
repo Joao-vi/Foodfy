@@ -8,11 +8,17 @@ module.exports = {
         const id = req.session.userId
         const results = await User.all()
         let users = results.rows
-        let loggedUser = await User.find({ where: { id } })
-        return res.render('area-adm/users/index.njk', { users, loggedUser })
+
+        let loggedUser = users.filter(user => user.id == id ? user : null)
+
+
+        //await User.find({ where: { id } })
+        return res.render('area-adm/users/index.njk', { users, loggedUser: loggedUser[0] })
     },
-    create(req, res) {
-        return res.render('area-adm/users/register.njk')
+    async create(req, res) {
+        const id = req.session.userId
+        const loggedUser = await User.find({ where: { id } })
+        return res.render('area-adm/users/register.njk', { loggedUser })
     },
     async post(req, res) {
         try {
@@ -56,6 +62,7 @@ module.exports = {
     },
     async put(req, res) {
         const { id } = req.params
+        req.body.id = id
         try {
             let { name, email, is_admin } = req.body
             if (!is_admin)

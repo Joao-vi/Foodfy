@@ -1,5 +1,7 @@
 const session = require('express-session')
 const User = require('../models/user')
+const Recipe = require('../models/recipes')
+const Recipe_files = require('../models/recipe_file')
 
 async function is_admin(id) {
     const user = await User.find({ where: { id } })
@@ -42,14 +44,18 @@ async function onlyUsersAdmin(req, res, next) {
     req.user = result.user
     next()
 }
-async function adminOrCurrentUser(req, res, next) {
+async function adminOrCreatorUser(req, res, next) {
+    const id = req.params.id || req.body.id
+
     if (!req.session.userId)
         return res.redirect('/admin/users/login')
-
     const result = await is_admin(req.session.userId)
-    if (!result.is_admin) {
-        return res.redirect('/admin/users')
+    let results = await Recipe.find(id)
+    let recipe = results.rows[0]
+    if (!recipe || (recipe.user_id != req.session.userId && !result.is_admin)) {
+        return res.redirect('/admin/recipes')
     }
+
     req.user = result.user
 
     next()
@@ -66,5 +72,5 @@ module.exports = {
     onlyUsers,
     onlyUsersAdmin,
     isLogged,
-    adminOrCurrentUser
+    adminOrCreatorUser
 }

@@ -27,9 +27,11 @@
         <div id="title-acessed" class="title-admin">
             <h1>Usuários</h1>
         </div>
+        {% if loggedUser.is_admin == '1' %}
             <div class="create">
-        <a class="button" href="/admin/users/create">Novo</a>
-    </div>
+                <a class="button" href="/admin/users/create">Novo</a>
+            </div>
+        {% endif %}
 </div>
 <section class="more-acessed-cards admin-user">
     {% for user in users %}
@@ -39,9 +41,11 @@
            
                 <div class="options">
                     <a  
-                         {% if loggedUser.is_admin == '1' or loggedUser.id == user.id %}
+                         {% if user.id == loggedUser.id %}
+                            href="/admin/users/profile"
+                         {% elseif   loggedUser.is_admin == '1'%}
                             href="/admin/users/{{user.id}}/edit"
-                         {% else %}
+                         {% else %}   
                             href=""
                             class="disabled"
                         {% endif %}

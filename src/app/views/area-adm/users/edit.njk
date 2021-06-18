@@ -41,10 +41,10 @@
         </div>
         
     </div>
-     <form id="form-put" action="/admin/users/{{user.id}}?_method=PUT" method="POST" >
+     <form id="form-put" action="/admin/users/{{user.id}}/?_method=PUT" method="POST" >
             {%include 'area-adm/users/fields.njk'%}   
     </form>
-    <form id="form-delete-user" action="/admin/users/{{user.id}}?_method=DELETE" method="POST" >
+    <form id="form-delete-user" action="/admin/users/{{user.id}}/?_method=DELETE" method="POST" >
     </form>
        
 {% endblock %}
