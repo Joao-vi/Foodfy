@@ -12,7 +12,8 @@
     gap: 40px;
 }
 
-.user-field-container .item-admin {
+#title h1,
+#title-acessed h1 .user-field-container .item-admin {
     display: flex;
     align-items: center;
     margin-top: 30px;

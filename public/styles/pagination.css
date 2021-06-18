@@ -1,0 +1,25 @@
+/*---- pagination -----*/
+
+.container-pagination {
+    display: grid;
+    grid-template-rows: 1fr 16px;
+    margin-bottom: 50px;
+}
+
+.container-pagination .pagination {
+    margin: 0;
+    align-self: end;
+    justify-self: center;
+}
+
+.pagination a,
+.pagination span {
+    color: var(--primary-color);
+    text-decoration: none;
+    margin-right: 16px;
+}
+
+.pagination a:hover {
+    filter: brightness(0.3);
+    border-bottom: 1px solid var(--primary-color);
+}

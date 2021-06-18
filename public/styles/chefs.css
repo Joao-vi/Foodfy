@@ -1,0 +1,121 @@
+/*--------- chef-detail ---------*/
+
+.chef-avatar {
+    text-align: center;
+}
+
+.chef-avatar img {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+}
+
+.chef-avatar .title-info {
+    margin-top: 30px;
+}
+
+.chef-avatar .title-info h1 {
+    margin: 0px;
+}
+
+#chef-recipe {
+    margin: 0px;
+    font-family: Roboto-Bold;
+    font-size: 24px;
+    color: #111111;
+    margin-top: 50px;
+}
+
+
+/*---------- avatar chef ---------*/
+
+.item .input-layout.avatar {
+    display: none;
+    vertical-align: middle;
+}
+
+.item #avatar-chef {
+    margin-top: 10px;
+    position: relative;
+    display: block;
+    overflow: hidden;
+    width: 150px;
+}
+
+.item #avatar-chef p {
+    padding: 8px 16px;
+    font-size: 16px;
+    background-color: var(--primary-color);
+    text-align: center;
+    color: white;
+    border-radius: 4px;
+}
+
+.item #avatar-chef #avatar-input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+}
+
+
+/*---------- área adm chef----------*/
+
+.admin-chef {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 20px;
+}
+
+.admin-chef .revenue-card {
+    display: grid;
+    grid-template-columns: 64px 1fr;
+    box-sizing: border-box;
+    border: 1px solid #eee;
+    border-radius: 15px;
+    padding: 5px;
+}
+
+.admin-chef .img-card {
+    display: block;
+    width: 64px;
+    height: 64px;
+    align-self: center;
+}
+
+.admin-chef .img-card img {
+    width: 64px;
+    height: 64px;
+    margin-top: 0px;
+    border-radius: 50%;
+}
+
+.admin-chef .info-card {
+    margin-top: 0px;
+    margin-left: 20px;
+    display: block;
+}
+
+.admin-chef .info-card h1 {
+    line-height: 21px;
+    margin: 0px;
+    margin-bottom: 10px;
+}
+
+.admin-chef .info-card a {
+    font-family: Roboto-Bold;
+    font-size: 14px;
+    color: #6558C3;
+    line-height: 16px;
+}
+
+
+/*---------- chefs detalhe general ----------*/
+
+.admin-chef .revenue-card.general_chef {
+    cursor: pointer;
+}

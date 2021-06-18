@@ -1,0 +1,275 @@
+/*---------- recipe ---------*/
+
+.recipe-banner img {
+    width: 100%;
+    height: 320px;
+    border-radius: 20px;
+    object-fit: cover;
+}
+
+.title-info {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.title-info h1 {
+    font-family: Roboto-Bold;
+    font-size: 36px;
+    color: #111111;
+}
+
+.title-info p {
+    font-family: Roboto-Regular;
+    font-size: 20px;
+    color: #777777;
+    margin-top: 4px;
+}
+
+.ingredientes {
+    margin-top: 30px;
+}
+
+.ingredientes ul,
+.modo-de-preparo ul,
+.informacoes p#tohide_3 {
+    margin-top: 20px;
+}
+
+.ingredientes ul li,
+.modo-de-preparo ul li {
+    margin-bottom: 5px;
+}
+
+#tohide_1,
+#tohide_2,
+#tohide_3 {
+    visibility: visible;
+    margin-bottom: 50px;
+}
+
+#tohide_1.hidden,
+#tohide_2.hidden,
+#tohide_3.hidden {
+    visibility: hidden;
+    margin-bottom: 0px;
+    height: 0;
+}
+
+.title {
+    align-items: center;
+    display: flex;
+}
+
+.title h3 {
+    font-family: Roboto-Bold;
+    font-size: 24px;
+    color: #111111;
+}
+
+.title p {
+    margin-left: 8px;
+    font-family: Roboto-Regular;
+    font-size: 18px;
+    color: #444444;
+    line-height: 28px;
+    cursor: pointer;
+}
+
+.detail-admin {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 50px;
+}
+
+.detail-admin #title-acessed,
+.detail-admin #title-acessed h1 {
+    margin-bottom: 0px;
+}
+
+.create a.button,
+.detail-admin button {
+    background: #6558C3 100%;
+    width: 130px;
+    border-color: transparent;
+    border-radius: 4px;
+    font-family: Roboto-Bold;
+    font-size: 16px;
+    color: #FFFFFF;
+    cursor: pointer;
+}
+
+.detail-admin button:first-child.disabled {
+    background-color: #777;
+    cursor: inherit;
+}
+
+.detail-admin button:first-child {
+    background: #DC4747 100%;
+    margin-right: 10px;
+}
+
+.create a.button {
+    padding: 6.5px 37px;
+}
+
+.detail-admin .create button {
+    background: #6558C3 100%;
+}
+
+
+/*---------- área adm recipes----------*/
+
+.admin-recipe {
+    margin-top: 30px;
+    margin-bottom: 50px;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.admin-recipe .revenue-card {
+    display: grid;
+    grid-template-columns: 172px 1fr;
+}
+
+.admin-recipe .img-card img {
+    width: 172px;
+    height: 80px;
+    margin-top: 0px;
+    border-radius: 10px;
+}
+
+.admin-recipe .info-card {
+    margin-top: 0px;
+    margin-left: 20px;
+}
+
+.admin-recipe .info-card h1 {
+    line-height: 21px;
+    margin: 0px;
+}
+
+.admin-recipe .info-card p {
+    margin: 5px 0px 10px 0px;
+    line-height: 16px;
+}
+
+.admin-recipe .info-card a {
+    font-family: Roboto-Bold;
+    font-size: 14px;
+    color: #6558C3;
+    line-height: 16px;
+}
+
+
+/*---------- images recipes ---------*/
+
+.item div#photos-container {
+    display: flex;
+    margin-top: 10px;
+}
+
+.item div.photos-recipe {
+    margin-top: 0;
+    min-height: 150px;
+    min-width: 150px;
+    position: relative;
+    display: flex;
+    overflow: hidden;
+    border-radius: 4px;
+    border: 1px solid #DDDDDD;
+}
+
+.item .photos-recipe #photos-input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.item .photos-recipe i {
+    font-size: 200%;
+    color: #777;
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+.item div#photos-container div#photos-recipe-preview {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+}
+
+.item div#photos-container div#photos-recipe-preview .photo {
+    max-width: 150px;
+    min-width: 100px;
+    height: 150px;
+    margin-left: 10px;
+    margin-top: 0;
+    position: relative;
+    border: 1px solid #DDDDDD;
+    border-radius: 4px;
+}
+
+.item div#photos-container div#photos-recipe-preview .photo img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    overflow: hidden;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.item div#photos-container div#photos-recipe-preview .photo i {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(255, 255, 255, 0.5);
+    color: red;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 300%;
+    cursor: pointer;
+    transition: opacity 100ms;
+    opacity: 0;
+}
+
+.item div#photos-container div#photos-recipe-preview .photo:hover i {
+    opacity: 1;
+}
+
+
+/*----- galery preview -----*/
+
+.recipe-banner .gallery-preview {
+    display: flex;
+    margin-top: 8px;
+    justify-content: flex-end;
+}
+
+.recipe-banner .gallery-preview img {
+    border: 1px solid #DDDDDD;
+    margin-top: 0;
+    margin-left: 10px;
+    height: 50px;
+    width: 50px;
+    object-fit: cover;
+    opacity: 0.6;
+    cursor: pointer;
+    transition: 100ms;
+    border-radius: 4px;
+}
+
+.recipe-banner .gallery-preview img:hover,
+.recipe-banner .gallery-preview img.active {
+    opacity: 1;
+}
